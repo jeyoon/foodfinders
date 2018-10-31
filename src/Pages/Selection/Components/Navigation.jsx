@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-
+import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { Button, IconButton, Grid, Paper, Input } from '@material-ui/core';
-import MenuIcon from '@material-ui/core/Menu';
+import { Button, Grid, Input } from '@material-ui/core';
 
 const styles = theme => ({
   grow: {
@@ -31,7 +29,7 @@ function Navigation(props) {
             <Typography variant='title' color='inherit' className={classes.grow}>
               Categories
             </Typography>
-            <Button color="inherit">Clear</Button>
+            <Button color="inherit" component={Link} to="/preferences">Clear</Button>
             <Button color="inherit">Search</Button>
           </Toolbar>
         </Grid>
@@ -54,9 +52,5 @@ function Navigation(props) {
     </AppBar>
   );
 }
-
-Navigation.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Navigation);

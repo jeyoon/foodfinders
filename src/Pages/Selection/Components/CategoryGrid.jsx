@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import CategoryTile from './CategoryTile';
 
 const styles = theme => ({
@@ -11,19 +10,13 @@ const styles = theme => ({
   }
 });
 
-class CategoryGrid extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 'categories': props.categories };
-    this.props = props;
-  }
-
+class CategoryGrid extends Component {
   render() {
     const { classes, categories } = this.props;
 
     return (
       <Grid container spacing={8} className={classes.grid} >
-        {this.state.categories.map(category => (
+        {categories.map(category => (
           <Grid item key={category.title} xs>
             <CategoryTile category={category} />
           </Grid>

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import { Paper, Typography } from '@material-ui/core';
+
 
 const styles = theme => ({
   tile: {
@@ -18,7 +18,7 @@ function CategoryTile(props) {
 
   return (
     <Paper className={classes.tile}>
-      <img src={category.img} />
+      <img src={category.img} alt={category.title} />
       <Typography>{category.title}</Typography>
     </Paper>
   );
