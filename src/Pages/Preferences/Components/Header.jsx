@@ -7,6 +7,7 @@ const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     textAlign: "center",
+    backgroundColor: "#B2EBF2",
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2
   }

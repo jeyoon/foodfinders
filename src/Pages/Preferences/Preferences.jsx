@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 
 import Header from "./Components/Header";
 import PreferenceGroup from "./Components/PreferenceGroup";
@@ -26,17 +26,11 @@ class Preferences extends Component {
 
     return (
       <div>
-        <div>
-          <Header name="John" inviteCode="AF53ZG" />
-        </div>
-        <div>
-          <PreferenceGroup label="likes" data={likes} handleChange={this.onPreferenceChange} />
-          <PreferenceGroup label="dislikes" data={dislikes} handleChange={this.onPreferenceChange} />
-          <PreferenceGroup label="allergies" data={allergies} handleChange={this.onPreferenceChange} />
-        </div>
-        <div>
-          <SaveButton handleSave={this.onSave} />
-        </div>
+        <Header name="John" inviteCode="AF53ZG" />
+        <PreferenceGroup label="likes" data={likes} handleChange={this.onPreferenceChange} />
+        <PreferenceGroup label="dislikes" data={dislikes} handleChange={this.onPreferenceChange} />
+        <PreferenceGroup label="allergies" data={allergies} handleChange={this.onPreferenceChange} />
+        <SaveButton handleSave={this.onSave} />
       </div>
     );
   }

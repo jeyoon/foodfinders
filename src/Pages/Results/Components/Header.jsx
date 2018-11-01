@@ -5,6 +5,9 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { Button, Grid, Input } from '@material-ui/core';
 
 const styles = theme => ({
+  root: {
+    backgroundColor: "#B2EBF2"
+  },
   grow: {
     flexGrow: 1,
   },
@@ -13,29 +16,29 @@ const styles = theme => ({
     marginRight: 20,
   },
   input: {
-    color: 'inherit',
     margin: theme.spacing.unit,
+    width: 100,
   },
 });
 
-function Navigation(props) {
+function Header(props) {
   const { classes } = props;
 
   return (
-    <AppBar position='static' color='primary'>
+    <AppBar position='static' className={classes.root}>
       <Grid container>
         <Grid item xs={12}>
           <Toolbar>
-            <Typography variant='title' color='inherit' className={classes.grow}>
+            <Typography variant='title' className={classes.grow}>
               Categories
             </Typography>
-            <Button color="inherit" component={Link} to="/preferences">Clear</Button>
-            <Button color="inherit">Search</Button>
+            <Button component={Link} to="/selection">Back</Button>
+            <Button component={Link} to="/">Home</Button>
           </Toolbar>
         </Grid>
         <Grid item xs={12}>
           <Toolbar>
-            <Typography variant='subtitle2' color='inherit' className={classes.grow}>
+            <Typography variant='subtitle2' className={classes.grow}>
               Displaying options available within...
             </Typography>
             <Input
@@ -53,4 +56,4 @@ function Navigation(props) {
   );
 }
 
-export default withStyles(styles)(Navigation);
+export default withStyles(styles)(Header);

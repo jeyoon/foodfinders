@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CategoryGrid from "./Components/CategoryGrid";
-import Navigation from "./Components/Navigation";
+import Header from "./Components/Header";
 
 import { categories } from "./store";
 
@@ -9,7 +9,7 @@ class Selection extends Component {
   render() {
     return (
       <div>
-        <Navigation />
+        <Header />
         <CategoryGrid categories={categories} />
       </div>
     );

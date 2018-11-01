@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Preferences from "./Pages/Preferences/Preferences";
 import Selection from "./Pages/Selection/Selection";
+import Results from "./Pages/Results/Results";
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -31,6 +32,7 @@ class App extends Component {
               />}
           />
           <Route path="/selection" component={Selection}/>
+          <Route path="/results" component={Results}/>
         </div>
       </Router>
     );
