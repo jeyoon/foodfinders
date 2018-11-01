@@ -30,9 +30,9 @@ function Header(props) {
         <Grid item xs={12}>
           <Toolbar>
             <Typography variant='title' className={classes.grow}>
-              Results
+              Details
             </Typography>
-            <Button component={Link} to="/selection">Back</Button>
+            <Button component={Link} to="/results">Back</Button>
             <Button component={Link} to="/">Home</Button>
           </Toolbar>
         </Grid>

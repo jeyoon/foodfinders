@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Grid, Typography, ButtonBase } from "@material-ui/core";
 
@@ -26,7 +27,7 @@ function Card(props) {
     <Paper className={classes.root}>
       <Grid container spacing={16}>
         <Grid item xs={5}>
-          <ButtonBase className={classes.image}>
+          <ButtonBase component={Link} to="/details" className={classes.image}>
             <img className={classes.img} alt="complex" src={cardInfo.img}/>
           </ButtonBase>
         </Grid>
