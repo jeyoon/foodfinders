@@ -12,17 +12,17 @@ class Preferences extends Component {
 
   onPreferenceChange = (preference, newTags) => {
     this.setState({ [preference]: newTags })
-  }
+  };
 
   onSave = () => {
-    console.log('Saving all preferences')
+    console.log('Saving all preferences');
     Object.entries(this.state).forEach(([key, tags]) => {
       this.props.onPreferenceChange(key, tags)
     })
-  }
+  };
 
   render() {
-    const { likes, dislikes, allergies } = this.props.preferences
+    const { likes, dislikes, allergies } = this.props.preferences;
 
     return (
       <div>
@@ -30,7 +30,7 @@ class Preferences extends Component {
         <PreferenceGroup label="likes" data={likes} handleChange={this.onPreferenceChange} />
         <PreferenceGroup label="dislikes" data={dislikes} handleChange={this.onPreferenceChange} />
         <PreferenceGroup label="allergies" data={allergies} handleChange={this.onPreferenceChange} />
-        <SaveButton handleSave={this.onSave} />
+        <SaveButton handleSave={this.onSave}/>
       </div>
     );
   }

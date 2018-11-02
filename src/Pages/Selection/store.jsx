@@ -1,4 +1,4 @@
-import { Burger, Sushi } from './Assets'
+import { Burger, Sushi } from '../Home/Assets'
 
 export const categories = [
   {

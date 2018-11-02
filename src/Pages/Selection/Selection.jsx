@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CategoryGrid from "./Components/CategoryGrid";
 import Header from "./Components/Header";
 
+
 import { categories } from "./store";
 
 class Selection extends Component {
