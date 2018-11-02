@@ -6,9 +6,6 @@ import {Grid, Button} from "@material-ui/core"
 import {Link} from "react-router-dom";
 
 const styles = theme => ({
-    root: {
-       margin:5
-    }
 });
 
 
@@ -26,14 +23,18 @@ class Waiting extends Component {
                 <Header name="John" inviteCode="AF53ZG" /><hr/>
                 <List/>
                 <hr/>
-                <Grid container xs={12}>
-                    <Grid  align="flexStart" item xs={6}>
-                        <Button variant="contained" component={Link} to="/" >Leave</Button>
+                <Grid container xs={12} direction='column'>
+                    <Grid container item>
+                      <Grid align="flexStart" item xs={6}>
+                          <Button style={{ marginLeft: 50 }} variant="contained" component={Link} to="/" >Leave</Button>
+                      </Grid>
+                      <Grid align="end" item xs={6}>
+                          <Button style={{ marginRight: 50 }} variant="contained" component={Link} to="/preferences" >Start</Button>
+                      </Grid>
                     </Grid>
-                    <Grid align="end" item xs={6}>
-                        <Button variant="contained" component={Link} to="/preferences" >Start</Button>
+                    <Grid container item alignItems="center" justify="center">
+                      <Button variant="contained" component={Link} to="/results" >Submit</Button>
                     </Grid>
-
                 </Grid>
 
             </div>

@@ -26,7 +26,7 @@ class SaveButton extends Component {
           className={classes.button}
           onClick={this.props.handleSave}
           component={Link}
-          to="/selection">
+          to="/waiting">
           Save
         </Button>
       </div>

@@ -55,7 +55,7 @@ class SimpleModal extends React.Component {
                 >
                     <div  className={classes.paper}>
                         <input type="text" placeholder="Enter Your Name"/><br/>
-                        <input type="text" placeholder="Enter Invite COde"/><br/>
+                        <input type="text" placeholder="Enter Invite Code"/><br/>
                         <Button variant="contained" component={Link} to="/waiting">Join</Button>
                         <IconButton onClick={this.handleClose} className={classes.button} aria-label="Delete">
                             <Icon>highlight_off</Icon>

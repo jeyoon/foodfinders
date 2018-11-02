@@ -32,7 +32,7 @@ function Header(props) {
             <Typography variant='title' className={classes.grow}>
               Results
             </Typography>
-            <Button component={Link} to="/selection">Back</Button>
+            <Button component={Link} to="/waiting">Back</Button>
             <Button component={Link} to="/">Home</Button>
           </Toolbar>
         </Grid>
