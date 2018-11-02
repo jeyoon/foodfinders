@@ -6,6 +6,7 @@ import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import { Link } from 'react-router-dom';
 
 
 
@@ -49,7 +50,7 @@ class SimpleModal extends React.Component {
         return (
             <div>
                 <div>
-                    <Button variant="contained" className={classes.button} onClick={this.handleOpen}>Create Group</Button>
+                    <Button variant="contained"className={classes.button} onClick={this.handleOpen}>Create Group</Button>
                 </div>
                 <Modal
                     aria-labelledby="simple-modal-title"
@@ -58,7 +59,7 @@ class SimpleModal extends React.Component {
                 >
                     <div  className={classes.paper}>
                         <input type="text" placeholder="Enter Your Name"/>
-                        <Button >Create</Button>
+                        <Button variant="contained" component={Link} to="/waiting" >Create</Button>
                         <IconButton onClick={this.handleClose} className={classes.button} aria-label="Delete">
                             <Icon>highlight_off</Icon>
                         </IconButton>

@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
+import { Link } from 'react-router-dom';
 
 
 
@@ -53,10 +54,9 @@ class SimpleModal extends React.Component {
                     open={this.state.open}
                 >
                     <div  className={classes.paper}>
-
                         <input type="text" placeholder="Enter Your Name"/><br/>
                         <input type="text" placeholder="Enter Invite COde"/><br/>
-                        <Button>Join</Button>
+                        <Button variant="contained" component={Link} to="/waiting">Join</Button>
                         <IconButton onClick={this.handleClose} className={classes.button} aria-label="Delete">
                             <Icon>highlight_off</Icon>
                         </IconButton>
