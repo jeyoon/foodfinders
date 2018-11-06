@@ -10,14 +10,26 @@ import { Link } from 'react-router-dom';
 
 
 
+function getModalStyle() {
+    const top = 50;
+    const left = 50;
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
 
 const styles = theme => ({
     paper: {
+        position: 'absolute',
         align: theme.center,
-        width: theme.spacing.unit * 50,
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 4,
+        padding: theme.spacing.unit *2,
+        width: '80%',
+        height: '15%'
     },
 
     root: {
@@ -26,6 +38,14 @@ const styles = theme => ({
     },
     button: {
         margin: theme.spacing.unit
+    },
+
+    textField: {
+        width: '80%',
+        borderRadius: '4px',
+        height: '35%',
+        boxSizing: 'borderBox',
+        border: '1px solid #ccc',
     }
 });
 
@@ -50,19 +70,17 @@ class SimpleModal extends React.Component {
         return (
             <div>
                 <div>
-                    <Button variant="contained"className={classes.button} onClick={this.handleOpen}>Create Group</Button>
+                    <Button variant="contained" className={classes.button} onClick={this.handleOpen}>Create Group</Button>
                 </div>
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
                 >
-                    <div  className={classes.paper}>
-                        <input type="text" placeholder="Enter Your Name"/>
-                        <Button variant="contained" component={Link} to="/waiting" >Create</Button>
-                        <IconButton onClick={this.handleClose} className={classes.button} aria-label="Delete">
-                            <Icon>highlight_off</Icon>
-                        </IconButton>
+                    <div align="center" style={getModalStyle()} className={classes.paper}>
+                        <input className={classes.textField} type="text" placeholder="Enter Your Name"/>
+                        <Button className={classes.button} variant="contained" component={Link} to="/waiting" >Create</Button>
+                        <Button className={classes.button} ariaLable="Delete" variant="contained" onClick={this.handleClose}>Back</Button>
                     </div>
 
                 </Modal>
