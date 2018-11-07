@@ -8,12 +8,17 @@
     "lodash": "^4.17.11",
     "material-ui-rating": "^2.0.0",
     "next": "7.0.2",
+    "npm": "^6.4.1",
+    "prop-types": "latest",
     "react": "^16.6.0",
+    "react-bootstrap": "^0.32.4",
+    "react-component-password": "^0.3.0",
+    "react-controllable": "^0.1.1",
     "react-dom": "^16.6.0",
+    "react-password-mask": "^3.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.5",
-    "react-tagsinput": "^3.19.0",
-    "prop-types": "latest"
+    "react-tagsinput": "^3.19.0"
   },
   "scripts": {
     "start": "react-scripts start",

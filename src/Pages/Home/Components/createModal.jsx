@@ -2,12 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import Modal from '@material-ui/core/Modal';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from 'react-router-dom';
-
 
 
 function getModalStyle() {

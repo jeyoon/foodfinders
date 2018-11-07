@@ -8,6 +8,26 @@ import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 
+function passWord() {
+    var testV = 1;
+    var pass1 = prompt('Please Enter Your Password',' ');
+    while (testV < 3) {
+        if (!pass1)
+            window.history.go(-1);
+        if (pass1.toLowerCase() === "letmein") {
+            alert('You Got it Right!');
+            window.location.assign('/waiting');
+            break;
+        }
+        testV+=1;
+        pass1 =
+            prompt('Access Denied - Password Incorrect, Please Try Again.','Password');
+    }
+    if (pass1.toLowerCase()!=="password" && testV ===3)
+        window.history.go(-1);
+    return " ";
+}
+
 
 
 function getModalStyle() {
@@ -50,6 +70,7 @@ const styles = theme => ({
             }
 });
 
+
 class SimpleModal extends React.Component {
     state = {
         open: false,
@@ -74,10 +95,11 @@ class SimpleModal extends React.Component {
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
                 >
+
                     <div align="center" style={getModalStyle()} className={classes.paper}>
                         <input  className={classes.textField} type="text" placeholder="Enter Your Name"/><br/>
                         <input className={classes.textField} type="text" placeholder="Enter Invite Code"/><br/>
-                        <Button variant="contained" component={Link} to="/waiting">Join</Button>
+                        <Button onClick={() => {passWord() }} variant="contained">Join</Button>
                         <Button className={classes.button} ariaLable="Delete" variant="contained" onClick={this.handleClose}>Back</Button>
 
                     </div>

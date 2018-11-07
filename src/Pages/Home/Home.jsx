@@ -11,13 +11,14 @@ const styles = theme => ({
     root: {
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh'
+        Height: '100%'
     },
     grow: {
         flex: 1,
         alignItems: 'center'
     },
 })
+
 
 
 class Selection extends Component {
