@@ -20,23 +20,26 @@ class Waiting extends Component {
     render() {
         return (
             <div>
-                <Header name="John Yoon" inviteCode="AF53ZG" /><hr/>
+                <Header name={sessionStorage.getItem("userName")} inviteCode={sessionStorage.getItem("userCode")} /><hr/>
                 <List/>
                 <hr/>
                 <Grid container xs={12} direction='column'>
                     <Grid container item>
                       <Grid align="flexStart" item xs={6}>
-                          <Button style={{ marginLeft: 50 }} variant="contained" component={Link} to="/" >Leave</Button>
+                          <Button style={{ marginLeft: 50 }} variant="contained" component={Link} to="/">Leave</Button>
                       </Grid>
                       <Grid align="end" item xs={6}>
-                          <Button style={{ marginRight: 50 }} variant="contained" component={Link} to="/preferences" >Start</Button>
+                          <Button
+                              style={{ marginRight: 50 }}
+                              variant="contained"
+                              component={Link}
+                              to="/preferences" >Start</Button>
                       </Grid>
                     </Grid>
                     <Grid container item alignItems="center" justify="center">
                       <Button variant="contained" component={Link} to="/results" >Submit</Button>
                     </Grid>
                 </Grid>
-
             </div>
         );
     }

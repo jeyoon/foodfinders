@@ -14,14 +14,17 @@ function passWord() {
         if (!pass1) {
             window.history.go(-1);
         }
-        if (pass1 === "letmein") {
+        if (pass1 === sessionStorage.getItem("userCode")) {
             window.location.assign('/waiting');
             return;
         }
-
         alert('Access Denied - Password Incorrect, Please Try Again.');
-
         return " ";
+}
+
+function name() {
+
+    sessionStorage.setItem("userName", document.getElementById("name").value)
 }
 
 
@@ -93,10 +96,26 @@ class SimpleModal extends React.Component {
                 >
 
                     <div align="center" style={getModalStyle()} className={classes.paper}>
-                        <input  className={classes.textField} type="text" placeholder="Enter Your Name"/><br/>
-                        <input id={"code"} className={classes.textField} type="text" placeholder="Enter Invite Code"/><br/>
-                        <Button  onClick={() => {passWord()}} variant="contained">Join</Button>
-                        <Button className={classes.button} ariaLable="Delete" variant="contained" onClick={this.handleClose}>Back</Button>
+                        <input
+                            id={"name"}
+                            className={classes.textField}
+                            type="text"
+                            placeholder="Enter Your Name"/><br/>
+                        <input
+                            id={"code"}
+                            className={classes.textField}
+                            type="text"
+                            placeholder="Enter Invite Code"/><br/>
+                        <Button
+                            onClick={() => {passWord()}}
+                            variant="contained"
+                        >Join</Button>
+                        <Button
+                            className={classes.button}
+                            ariaLable="Delete"
+                            variant="contained"
+                            onClick={this.handleClose}
+                        >Back</Button>
 
                     </div>
 

@@ -26,7 +26,7 @@ class Preferences extends Component {
 
     return (
       <div>
-        <Header name="John" inviteCode="AF53ZG" />
+        <Header name={sessionStorage.getItem("userName")} inviteCode={sessionStorage.getItem("userCode")} />
         <PreferenceGroup label="likes" data={likes} handleChange={this.onPreferenceChange} />
         <PreferenceGroup label="dislikes" data={dislikes} handleChange={this.onPreferenceChange} />
         <PreferenceGroup label="allergies" data={allergies} handleChange={this.onPreferenceChange} />

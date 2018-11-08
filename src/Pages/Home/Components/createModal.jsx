@@ -17,6 +17,14 @@ function getModalStyle() {
         transform: `translate(-${top}%, -${left}%)`,
     };
 }
+function codeAndName() {
+    let code = Math.random().toString(36).substring(6);
+    sessionStorage.setItem("userCode", code);
+    let name = document.getElementById("name").value;
+    sessionStorage.setItem("userName", name);
+}
+
+
 
 const styles = theme => ({
     paper: {
@@ -50,10 +58,6 @@ const styles = theme => ({
     }
 });
 
-function generate() {
-    let r = Math.random().toString(36).substring(7);
-    return r;
-}
 
 class SimpleModal extends React.Component {
     state = {
@@ -74,7 +78,10 @@ class SimpleModal extends React.Component {
         return (
             <div>
                 <div>
-                    <Button variant="contained" className={classes.button} onClick={this.handleOpen}>Create Group</Button>
+                    <Button
+                        variant="contained"
+                        className={classes.button}
+                        onClick={this.handleOpen}>Create Group</Button>
                 </div>
                 <Modal
                     aria-labelledby="simple-modal-title"
@@ -83,10 +90,27 @@ class SimpleModal extends React.Component {
                 >
                     <div align="center" style={getModalStyle()} className={classes.paper}>
                         <form id={"userName"} className={classes.form} action={"/waiting"} method={"get"}>
-                        <input className={classes.textField} type="text" name="name" placeholder="Enter Your Name"/>
+                        <input className={classes.textField}
+                               id={"name"}
+                               type="text"
+                               name="name"
+                               placeholder="Enter Your Name"/>
                         </form>
-                        <Button value={"Submit"} type="submit" form={"userName"} className={classes.button} variant={"contained"} component={Link} to="/waiting" >Create</Button>
-                        <Button className={classes.button} ariaLable="Delete" variant="contained" onClick={this.handleClose}>Back</Button>
+                        <Button
+                            value={"Submit"}
+                            type="submit"
+                            form={"userName"}
+                            className={classes.button}
+                            variant={"contained"}
+                            component={Link}
+                            onClick={() => {codeAndName()}}
+
+                            to="/waiting">Create</Button>
+                        <Button
+                            className={classes.button}
+                            ariaLable="Delete"
+                            variant="contained"
+                            onClick={this.handleClose}>Back</Button>
                     </div>
 
                 </Modal>
