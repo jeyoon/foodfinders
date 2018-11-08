@@ -15,12 +15,20 @@ class App extends Component {
     likes: [],
     dislikes: [],
     allergies: [],
+    categoryStates: {'American': 'img_liked'}
   }
 
   handlePreferenceChange = (preference, newTags)  => {
     console.log(`Updating ${preference} to ${newTags}`)
     this.setState({ [preference]: newTags })
   }
+
+  handleSelectionChange = (selection, newTags)  => {
+    console.log(`Updating ${selection} to ${newTags}`)
+    this.setState({ [selection]: newTags })
+  }
+
+  // https://stackoverflow.com/questions/7113865/how-to-copy-clone-a-hash-object-in-jquery
 
   render() {
     return (
@@ -34,7 +42,14 @@ class App extends Component {
                 onPreferenceChange={this.handlePreferenceChange}
               />}
           />
-          <Route path="/selection" component={Selection}/>
+          <Route
+            path="/selection"
+            render={props =>
+              <Selection
+                categoryStates={this.state.categoryStates}
+                onSelectionChange={this.handleSelectionChange}
+              />}
+            />
           <Route path="/results" component={Results}/>
           <Route path="/details" component={Details}/>
           <Route path="/waiting" component={Waiting}/>

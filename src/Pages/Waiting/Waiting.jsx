@@ -23,7 +23,7 @@ class Waiting extends Component {
                 <Header name={sessionStorage.getItem("userName")} inviteCode={sessionStorage.getItem("userCode")} /><hr/>
                 <List/>
                 <hr/>
-                <Grid container xs={12} direction='column'>
+                <Grid container direction='column'>
                     <Grid container item>
                       <Grid align="flexStart" item xs={6}>
                           <Button style={{ marginLeft: 50 }} variant="contained" component={Link} to="/">Leave</Button>
@@ -37,7 +37,7 @@ class Waiting extends Component {
                       </Grid>
                     </Grid>
                     <Grid container item alignItems="center" justify="center">
-                      <Button variant="contained" component={Link} to="/results" >Submit</Button>
+                      <Button variant="contained" component={Link} to="/selection" >Submit</Button>
                     </Grid>
                 </Grid>
             </div>

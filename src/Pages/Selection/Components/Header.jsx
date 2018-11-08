@@ -32,22 +32,8 @@ function Header(props) {
             <Typography variant='title' className={classes.grow}>
               Categories
             </Typography>
-            <Button component={Link} to="/preferences">Back</Button>
+            <Button component={Link} to="/waiting">Back</Button>
             <Button component={Link} to="/results">Search</Button>
-          </Toolbar>
-        </Grid>
-        <Grid item xs={12}>
-          <Toolbar>
-            <Typography variant='subtitle2' className={classes.grow}>
-              Displaying options available within...
-            </Typography>
-            <Input
-              defaultValue="San Diego"
-              className={classes.input}
-              inputProps={{
-                'aria-label': 'Description',
-              }}
-            />
           </Toolbar>
         </Grid>
       </Grid>
