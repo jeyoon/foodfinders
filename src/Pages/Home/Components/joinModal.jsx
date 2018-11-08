@@ -7,8 +7,8 @@ import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
 
+//from http://www.javascriptkit.com/script/cut10.shtml
 function passWord() {
-
     var pass1 = document.getElementById("code").value;
 
         if (!pass1) {
@@ -23,7 +23,6 @@ function passWord() {
 }
 
 function name() {
-
     sessionStorage.setItem("userName", document.getElementById("name").value)
 }
 
@@ -107,7 +106,7 @@ class SimpleModal extends React.Component {
                             type="text"
                             placeholder="Enter Invite Code"/><br/>
                         <Button
-                            onClick={() => {passWord()}}
+                            onClick={() => {passWord(); name()}}
                             variant="contained"
                         >Join</Button>
                         <Button

@@ -20,13 +20,18 @@ class Waiting extends Component {
     render() {
         return (
             <div>
-                <Header name={sessionStorage.getItem("userName")} inviteCode={sessionStorage.getItem("userCode")} /><hr/>
+                <Header
+                    name={sessionStorage.getItem("userName")}
+                    inviteCode={sessionStorage.getItem("userCode")} /><hr/>
                 <List/>
                 <hr/>
                 <Grid container direction='column'>
                     <Grid container item>
                       <Grid align="flexStart" item xs={6}>
-                          <Button style={{ marginLeft: 50 }} variant="contained" component={Link} to="/">Leave</Button>
+                          <Button
+                              style={{ marginLeft: 50 }}
+                              variant="contained"
+                              component={Link} to="/">Leave</Button>
                       </Grid>
                       <Grid align="end" item xs={6}>
                           <Button
