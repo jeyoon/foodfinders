@@ -11,7 +11,7 @@ class Selection extends Component {
     return (
       <div>
         <Header />
-        <CategoryGrid categories={categories} />
+        <CategoryGrid categories={categories} categoryStates={this.props.categoryStates}/>
       </div>
     );
   }

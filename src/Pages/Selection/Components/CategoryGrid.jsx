@@ -11,16 +11,31 @@ const styles = theme => ({
 });
 
 class CategoryGrid extends Component {
+
+  assignCategory = (category) => {
+    const { categoryStates } = this.props
+
+    if (category.title in categoryStates){
+      return (
+        <Grid item key={category.title} xs={6}>
+          <CategoryTile category={category} categoryState={categoryStates[category.title]}/>
+        </Grid>
+      )
+    } else {
+      return (
+        <Grid item key={category.title} xs={6}>
+          <CategoryTile category={category} categoryState={'img_neutral'}/>
+        </Grid>
+      )
+    }
+  }
+
   render() {
-    const { classes, categories } = this.props;
+    const { classes, categories, categoryStates } = this.props;
 
     return (
       <Grid container spacing={8} className={classes.grid} >
-        {categories.map(category => (
-          <Grid item key={category.title} xs>
-            <CategoryTile category={category} />
-          </Grid>
-        ))}
+        { categories.map(category => this.assignCategory(category)) }
       </Grid>
     );
   }
