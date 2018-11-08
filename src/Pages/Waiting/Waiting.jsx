@@ -20,7 +20,7 @@ class Waiting extends Component {
     render() {
         return (
             <div>
-                <Header name="John" inviteCode="AF53ZG" /><hr/>
+                <Header name="John Yoon" inviteCode="AF53ZG" /><hr/>
                 <List/>
                 <hr/>
                 <Grid container xs={12} direction='column'>

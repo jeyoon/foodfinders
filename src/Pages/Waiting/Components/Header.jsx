@@ -18,7 +18,7 @@ function Header(props) {
 
   return (
     <Paper elevation={1} className={classes.root}>
-      <Typography variant="h5">Waiting For Others to Join...</Typography>
+      <Typography variant="h5">Welecome {name}! <br/>Waiting For Others to Join...</Typography>
       <Typography>Invite Code: {inviteCode}</Typography>
     </Paper>
   );

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Header from "./Components/Title";
 import CreateModal from "./Components/createModal";
-import JoinModal from "./Components/joinModal.jsx";
+import JoinModal from "./Components/joinModal";
 import {Paper,Typography, Grid} from '@material-ui/core';
 
 const styles = theme => ({

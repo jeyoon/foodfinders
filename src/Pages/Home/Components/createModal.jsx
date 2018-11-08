@@ -40,13 +40,20 @@ const styles = theme => ({
     textField: {
         width: '80%',
         borderRadius: '4px',
-        height: '35%',
+        height: '100%',
         boxSizing: 'borderBox',
         border: '1px solid #ccc',
+    },
+
+    form: {
+        height: '35%'
     }
 });
 
-
+function generate() {
+    let r = Math.random().toString(36).substring(7);
+    return r;
+}
 
 class SimpleModal extends React.Component {
     state = {
@@ -75,8 +82,10 @@ class SimpleModal extends React.Component {
                     open={this.state.open}
                 >
                     <div align="center" style={getModalStyle()} className={classes.paper}>
-                        <input className={classes.textField} type="text" placeholder="Enter Your Name"/>
-                        <Button className={classes.button} variant="contained" component={Link} to="/waiting" >Create</Button>
+                        <form id={"userName"} className={classes.form} action={"/waiting"} method={"get"}>
+                        <input className={classes.textField} type="text" name="name" placeholder="Enter Your Name"/>
+                        </form>
+                        <Button value={"Submit"} type="submit" form={"userName"} className={classes.button} variant={"contained"} component={Link} to="/waiting" >Create</Button>
                         <Button className={classes.button} ariaLable="Delete" variant="contained" onClick={this.handleClose}>Back</Button>
                     </div>
 
