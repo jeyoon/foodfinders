@@ -87,7 +87,7 @@
           <entry key="env" value="1" />
           <entry key="firebaserc" value="1" />
           <entry key="html" value="2" />
-          <entry key="js" value="4" />
+          <entry key="js" value="6" />
           <entry key="json" value="5" />
           <entry key="jsx" value="16" />
         </counts>
@@ -98,15 +98,16 @@
           <entry key="HTML" value="2" />
           <entry key="JSON" value="5" />
           <entry key="JSX Harmony" value="13" />
-          <entry key="JavaScript" value="4" />
+          <entry key="JavaScript" value="6" />
           <entry key="PLAIN_TEXT" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="49" />
+          <entry key="js" value="20" />
           <entry key="json" value="2" />
-          <entry key="jsx" value="2376" />
+          <entry key="jsx" value="2428" />
           <entry key="txt" value="28" />
         </counts>
       </usages-collector>
@@ -114,7 +115,8 @@
         <counts>
           <entry key="HTML" value="49" />
           <entry key="JSON" value="2" />
-          <entry key="JSX Harmony" value="2038" />
+          <entry key="JSX Harmony" value="2090" />
+          <entry key="JavaScript" value="20" />
           <entry key="PLAIN_TEXT" value="366" />
         </counts>
       </usages-collector>
@@ -143,17 +145,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Pages/Home/Components/joinModal.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1112">
-              <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+            <state relative-caret-position="340">
+              <caret line="111" column="31" lean-forward="true" selection-start-line="111" selection-start-column="31" selection-end-line="111" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Pages/Waiting/Waiting.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+            <state relative-caret-position="407">
+              <caret line="44" column="77" selection-start-line="44" selection-start-column="77" selection-end-line="44" selection-end-column="77" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -161,11 +163,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="44" column="16" lean-forward="true" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+            <state relative-caret-position="482">
+              <caret line="57" column="15" lean-forward="true" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -226,7 +231,6 @@
         <option value="$PROJECT_DIR$/src/Pages/Home/Components/CreateButton.JSX" />
         <option value="$PROJECT_DIR$/src/Pages/Preferences/Components/Header.jsx" />
         <option value="$PROJECT_DIR$/src/Pages/Selection/Components/Header.jsx" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/Pages/Waiting/Components/List.jsx" />
         <option value="$PROJECT_DIR$/src/Pages/Selection/Selection.jsx" />
         <option value="$PROJECT_DIR$/.env" />
@@ -236,8 +240,9 @@
         <option value="$PROJECT_DIR$/src/Pages/Home/Components/login.jsx" />
         <option value="$PROJECT_DIR$/src/Pages/Waiting/Components/Header.jsx" />
         <option value="$PROJECT_DIR$/src/Pages/Home/Components/createModal.jsx" />
-        <option value="$PROJECT_DIR$/src/Pages/Home/Components/joinModal.jsx" />
         <option value="$PROJECT_DIR$/src/Pages/Preferences/Preferences.jsx" />
+        <option value="$PROJECT_DIR$/src/Pages/Home/Components/joinModal.jsx" />
+        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/Pages/Waiting/Waiting.jsx" />
       </list>
     </option>
@@ -346,6 +351,13 @@
               <item name="foodfinders2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Pages" type="462c0819:PsiDirectoryNode" />
+              <item name="Selection" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="foodfinders2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="foodfinders2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Pages" type="462c0819:PsiDirectoryNode" />
               <item name="Waiting" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -445,7 +457,7 @@
       <workItem from="1541197463158" duration="349000" />
       <workItem from="1541390440097" duration="1476000" />
       <workItem from="1541442916604" duration="6781000" />
-      <workItem from="1541481156574" duration="22037000" />
+      <workItem from="1541481156574" duration="23584000" />
     </task>
     <task id="LOCAL-00001" summary="Janky password">
       <created>1541693502936</created>
@@ -458,7 +470,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63902000" />
+    <option name="totallyTimeSpent" value="65449000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -487,7 +499,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2888147" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.2888147" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -616,13 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="26" selection-start-column="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Pages/Home/Home.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-11">
@@ -670,16 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pages/Home/Components/createModal.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="16" lean-forward="true" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-          <folding>
-            <element signature="e#46#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Pages/Preferences/Preferences.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
@@ -704,27 +699,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pages/Home/Components/joinModal.jsx">
+    <entry file="file://$PROJECT_DIR$/src/Pages/Home/Components/createModal.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1112">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+        <state relative-caret-position="420">
+          <caret line="28" column="16" lean-forward="true" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding>
+            <element signature="e#46#72#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pages/Waiting/Waiting.jsx">
+    <entry file="file://$PROJECT_DIR$/src/Pages/Home/Components/joinModal.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        <state relative-caret-position="340">
+          <caret line="111" column="31" lean-forward="true" selection-start-line="111" selection-start-column="31" selection-end-line="111" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" selection-start-column="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="44" column="16" lean-forward="true" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+        <state relative-caret-position="482">
+          <caret line="57" column="15" lean-forward="true" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pages/Waiting/Waiting.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="44" column="77" selection-start-line="44" selection-start-column="77" selection-end-line="44" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

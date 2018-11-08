@@ -42,7 +42,7 @@ class Waiting extends Component {
                       </Grid>
                     </Grid>
                     <Grid container item alignItems="center" justify="center">
-                      <Button variant="contained" component={Link} to="/selection" >Submit</Button>
+                      <Button variant="contained" component={Link} to="/selection">Submit</Button>
                     </Grid>
                 </Grid>
             </div>
