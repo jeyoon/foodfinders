@@ -10,17 +10,27 @@ var _ = require('lodash/collection');
 
 class Results extends Component {
 
+  expandable = (category) => {
+    const { classes, cards, categoryStates } = this.props;
+    var shouldExpand = (categoryStates[category] === 'img_liked');
+    return shouldExpand;
+  }
+
+  disableCategory = (category) => {
+    const { classes, cards, categoryStates } = this.props;
+    var shouldDisable = (categoryStates[category] === 'img_disliked')
+    return shouldDisable;
+  }
+
   render() {
     const groups = _.groupBy(restaurants, restaurant => restaurant.category)
-    _.forEach(groups, (cards, category) =>
-      console.log(category)
-    )
 
     return (
       <div>
         <Header />
         {Object.keys(groups).map(category =>
-          <CardPanel key={category} category={category} cards={groups[category]} />
+          <CardPanel key={category} category={category} cards={groups[category]}
+          shouldExpand={this.expandable(category)} shouldDisable={this.disableCategory(category)}/>
         )}
       </div>
     )

@@ -12,7 +12,7 @@ export const restaurants = [
   {
     'title': 'RakiRaki',
     'description': "Don't Worry, Beef Happy!",
-    'category': 'Japanese',
+    'category': 'Chinese',
     'address': '1234 Gilman Dr (2.3mi)',
     'cost': 2,
     'img': Sushi
@@ -20,7 +20,7 @@ export const restaurants = [
   {
     'title': 'Burger King',
     'description': "Don't Worry, Beef Happy!",
-    'category': 'American',
+    'category': 'Japanese',
     'address': '1234 Gilman Dr (2.3mi)',
     'cost': 3,
     'img': Burger
@@ -28,7 +28,7 @@ export const restaurants = [
   {
     'title': 'Tajima',
     'description': "Don't Worry, Beef Happy!",
-    'category': 'Japanese',
+    'category': 'French',
     'address': '1234 Gilman Dr (2.3mi)',
     'cost': 1,
     'img': Sushi
