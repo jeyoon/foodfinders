@@ -12,19 +12,23 @@ const styles = theme => ({
 
 class CategoryGrid extends Component {
 
+  selectionHandler = (categoryTitle, newState) => {
+    this.props.selectionHandler(categoryTitle, newState)
+  };
+
   assignCategory = (category) => {
     const { categoryStates } = this.props
 
     if (category.title in categoryStates){
       return (
         <Grid item key={category.title} xs={6}>
-          <CategoryTile category={category} categoryState={categoryStates[category.title]}/>
+          <CategoryTile category={category} categoryState={categoryStates[category.title]} selectionChangeHandler={this.selectionHandler}/>
         </Grid>
       )
     } else {
       return (
         <Grid item key={category.title} xs={6}>
-          <CategoryTile category={category} categoryState={'img_neutral'}/>
+          <CategoryTile category={category} categoryState={'img_neutral'} selectionChangeHandler={this.selectionHandler}/>
         </Grid>
       )
     }

@@ -14,7 +14,7 @@ class App extends Component {
     likes: [],
     dislikes: [],
     allergies: [],
-    categoryStates: {'American': 'img_liked'},
+    categoryStates: {},
     users: ["John", "Sherry", "Gabe"],
     submitted: [true, true, true],
     currentUser: "GUEST",
@@ -27,12 +27,13 @@ class App extends Component {
     this.setState({ [preference]: newTags })
   }
 
-  handleSelectionChange = (selection, newTags)  => {
-    console.log(`Updating ${selection} to ${newTags}`)
-    this.setState({ [selection]: newTags })
-  }
+  handleSelectionChange = (selection, newStates)  => {
+    var copiedCategoryStates = Object.assign({}, this.state.categoryStates)
+    copiedCategoryStates[selection] = newStates;
 
-  // https://stackoverflow.com/questions/7113865/how-to-copy-clone-a-hash-object-in-jquery
+    console.log(`Updating ${selection} to ${newStates}`)
+    this.setState({categoryStates: copiedCategoryStates})
+  }
 
   // Sets index in state.submitted corresponding to $user as true
   handlePreferenceSubmit = () => {
@@ -96,7 +97,12 @@ class App extends Component {
                 onSelectionChange={this.handleSelectionChange}
               />}
             />
-          <Route path="/results" component={Results}/>
+          <Route
+            path="/results" render={props =>
+              <Results
+                categoryStates={this.state.categoryStates}
+              />}
+            />
           <Route path="/details" component={Details}/>
           <Route
             path="/waiting"

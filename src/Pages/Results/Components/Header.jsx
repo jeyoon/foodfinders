@@ -6,7 +6,7 @@ import { Button, Grid, Input } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
-    backgroundColor: "#B2EBF2"
+    backgroundColor: "#D9A18C"
   },
   grow: {
     flexGrow: 1,

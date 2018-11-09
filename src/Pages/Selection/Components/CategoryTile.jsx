@@ -17,42 +17,35 @@ class CategoryTile extends Component {
 
   constructor(props){
     super(props);
-    const { category, categoryState } = this.props;
+    const { category, categoryState, selectionHandler } = this.props;
 
     // this.state = this.state.selections;
-    this.state = {
-      categoryState: categoryState
-    }
+    this.state = { categoryState: categoryState }
 
     this.toggleImage = this.toggleImage.bind(this);
    }
-   //
-   // onChange = () => {
-   //   const { category } = this.props;
-   //
-   //   console.log('Saving all selections');
-   //   Object.entries(category).forEach(([key, tags]) => {
-   //     this.props.onSelectionChange(key, tags);
-   //   })
-   // };
-   //
-   // onSelectionChange = (selection, newTags) => {
-   //   this.setState({[selection]: newTags })
-   // };
+
+   selectionChangeHandler = (newState) => {
+     this.props.selectionChangeHandler(this.props.category.title, newState)
+   };
 
    toggleImage = () => {
     const { category } = this.props;
     const { categoryState } = this.state;
+    var newState;
 
     if (categoryState === 'img_neutral'){
       this.setState({categoryState: 'img_liked'});
+      newState = 'img_liked'
     } else if (categoryState === 'img_liked'){
       this.setState({categoryState: 'img_disliked'});
+      newState = 'img_disliked'
     } else if (categoryState === 'img_disliked'){
       this.setState({categoryState: 'img_neutral'});
+      newState = 'img_neutral'
     }
 
-    // call handler here
+    this.selectionChangeHandler(newState);
   }
 
   render(){
@@ -60,7 +53,7 @@ class CategoryTile extends Component {
     const { categoryState } = this.state
 
     return (
-      <Paper className={classes.tile} onClick={this.toggleImage}>
+      <Paper className={classes.tile} onClick={this.toggleImage} >
         <img src={category[categoryState]} alt={category.title} />
         <Typography>{category.title}</Typography>
       </Paper>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
@@ -27,27 +27,45 @@ const styles = theme => ({
   }
 });
 
-function CardPanel(props) {
-  const { classes, category, cards } = props;
+class CardPanel extends Component {
 
-  return (
-    <div className={classes.root}>
-      <ExpansionPanel className={classes.panel}>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>{category}</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Grid container direction="column" spacing={8}>
-            {cards.map(cardInfo =>
-              <Grid key={cardInfo.title} item xs>
-                <Card cardInfo={cardInfo} />
+  constructor(props) {
+    super(props)
+    this.state = {
+      shouldExpand: this.props.shouldExpand
+    }
+  }
+
+  render() {
+    const { classes, category, cards, shouldDisable } = this.props
+    const { shouldExpand } = this.state
+    const preferred = this.props.shouldExpand
+
+    return (
+      <div className={classes.root}>
+        {(shouldDisable != true) && (
+          <ExpansionPanel
+            className={classes.panel}
+            expanded={shouldExpand}
+            onChange={() => this.setState({ shouldExpand: !this.state.shouldExpand })}
+            style={{ backgroundColor: preferred ? '#B9E3AB' : '#F7F7F7' }}>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography className={classes.heading}>{category}</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Grid container direction="column" spacing={8}>
+                {cards.map(cardInfo =>
+                  <Grid key={cardInfo.title} item xs>
+                    <Card cardInfo={cardInfo} />
+                  </Grid>
+                )}
               </Grid>
-            )}
-          </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
-  );
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        )}
+      </div>
+    );
+  }
 }
 
 CardPanel.propTypes = {
