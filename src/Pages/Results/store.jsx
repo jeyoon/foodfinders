@@ -1,36 +1,36 @@
-import { Burger, Sushi } from '../Home/Assets'
+import { Burger, Sushi, Noodle, Steak } from '../Selection/Assets'
 
 export const restaurants = [
   {
-    'title': 'Buntastic',
+    'title': 'Buntastic Buns',
     'description': "Don't Worry, Beef Happy!",
     'category': 'American',
-    'address': '1234 Gilman Dr (2.3mi)',
+    'address': 'Indiana',
     'cost': 4,
     'img': Burger
   },
   {
-    'title': 'RakiRaki',
-    'description': "Don't Worry, Beef Happy!",
+    'title': 'Make It Tso',
+    'description': 'Best caramelized orange chicken in town!',
     'category': 'Chinese',
-    'address': '1234 Gilman Dr (2.3mi)',
+    'address': 'Shenzhen',
     'cost': 2,
-    'img': Sushi
+    'img': Noodle
   },
   {
-    'title': 'Burger King',
-    'description': "Don't Worry, Beef Happy!",
+    'title': 'Miso Happy',
+    'description': "お腹が空いています",
     'category': 'Japanese',
-    'address': '1234 Gilman Dr (2.3mi)',
+    'address': 'Hiroshima',
     'cost': 3,
-    'img': Burger
+    'img': Sushi
   },
   {
-    'title': 'Tajima',
-    'description': "Don't Worry, Beef Happy!",
+    'title': 'Oui Love Baguettes',
+    'description': "Ooh La La!~",
     'category': 'French',
-    'address': '1234 Gilman Dr (2.3mi)',
+    'address': 'Paris',
     'cost': 1,
-    'img': Sushi
+    'img': Steak
   },
 ]

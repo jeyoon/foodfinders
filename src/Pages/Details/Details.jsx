@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 import Header from './components/Header';
-import { Burger, Sushi } from '../Home/Assets';
+import { Burger, Sushi, Noodle, Steak } from '../Selection/Assets';
 import {Grid} from '@material-ui/core';
 
 const styles = theme => ({
@@ -16,38 +16,34 @@ const styles = theme => ({
   }
 });
 
-function saveInfo() {
-  var info = {};
-  info.name=localStorage.getItem("detailsName");
-  info.description=localStorage.getItem("detailsDescription");
-  info.address=localStorage.getItem("detailsAddress");
-  info.category=localStorage.getItem("detailsCategory");
-  return info;
-}
-
-function chooseImg(info) {
-
-  if(info.category==="Japanese") {
-
-  }
-}
-
 class Details extends Component {
+
+  saveInfo() {
+    var info = {};
+    info.name=localStorage.getItem("detailsName");
+    info.address=localStorage.getItem("detailsAddress");
+    info.description=localStorage.getItem("detailsDescription");
+    info.category=localStorage.getItem("detailsCategory");
+    info.image=localStorage.getItem("detailsImage");
+    return info;
+  }
+
   render() {
     const { classes } = this.props;
-    let info =saveInfo();
+    let info = this.saveInfo();
+    console.log(info)
     return (
       <div className={classes.root}>
         <Header />
         <Grid container>
         <Paper align="center" className={classes.grow}>
-          <img src={Burger} alt={"no picture 4u"}/>
+          <img src={info.image} alt={"UNDEFINED"}/>
 
-          <Typography variant="h1">
+          <Typography variant="h4">
               {info.name}
           </Typography>
           <Typography variant="subtitle1">
-            It will contain a picture, details, reviews, etc.
+            {info.description}
           </Typography>
         </Paper>
         </Grid>

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Grid, Typography, ButtonBase } from "@material-ui/core";
+import Location from '../../Selection/Assets/Location.png'
+import { withRouter } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -9,55 +11,71 @@ const styles = theme => ({
     maxWidth: 600,
     padding: theme.spacing.unit * 2,
   },
-  image: {
-    width: 128,
-    height: 128,
-  },
   img: {
-    margin: 'auto',
     display: 'block',
     maxWidth: '100%',
     maxHeight: '100%',
   },
 });
-function sendDetails(name, address, description, category) {
-  localStorage.setItem("detailsName", name);
-  localStorage.setItem("detailsDescription", description);
-  localStorage.setItem("detailsAdress", address);
-  localStorage.setItem("detailsCategory", category);
-}
 
-function Card(props) {
-  const { classes, cardInfo } = props;
-  return (
-    <Paper className={classes.root}>
-      <Grid container spacing={16}>
-        <Grid item xs={5}>
-          <ButtonBase onClick={() => {sendDetails(cardInfo.title, cardInfo.address)}}
-                      component={Link} to="/details" className={classes.image}>
-            <img className={classes.img} alt="complex" src={cardInfo.img}/>
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={7} container>
-          <Grid item xs container direction="column" spacing={16}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1">
-                {cardInfo.title}
-              </Typography>
-              <Typography gutterBottom>{cardInfo.description}</Typography>
-              <Typography color="textSecondary">{cardInfo.categories}</Typography>
+class Card extends Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  sendDetails(name, address, description, category, image) {
+    localStorage.setItem("detailsName", name);
+    localStorage.setItem("detailsAddress", address);
+    localStorage.setItem("detailsDescription", description);
+    localStorage.setItem("detailsCategory", category);
+    localStorage.setItem("detailsImage", image)
+  }
+
+  // onClick={this.props.history.push('/details')}
+  render() {
+    const { classes, cardInfo } = this.props;
+    return (
+      <Paper
+        className={classes.root}
+        onClick={
+          function() {
+            console.log(cardInfo)
+            this.sendDetails(cardInfo.title, cardInfo.address, cardInfo.description, cardInfo.category, cardInfo.img)
+            this.props.history.push('/details')
+          }.bind(this)}>
+        <Grid container spacing={16}>
+          <Grid item xs={4} style={{ paddingTop: 35 }}>
+            <ButtonBase component={Link} to="/details">
+              <img className={classes.img} alt="complex" src={cardInfo.img}/>
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={8} container>
+            <Grid item xs container direction="column" spacing={16}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1">
+                  {cardInfo.title}
+                </Typography>
+                <Typography gutterBottom>{cardInfo.description}</Typography>
+                <Typography color="textSecondary">{cardInfo.categories}</Typography>
+              </Grid>
+              <Grid container item>
+                <Grid>
+                  <img className={classes.img} alt="complex" src={Location}/>
+                </Grid>
+                <Grid>
+                  <Typography gutterBottom>{cardInfo.address}</Typography>
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item>
-              <Typography gutterBottom>{cardInfo.address}</Typography>
+              <Typography variant="subtitle2">{"$".repeat(cardInfo.cost)}</Typography>
             </Grid>
           </Grid>
-          <Grid item>
-            <Typography variant="subtitle2">{"$".repeat(cardInfo.cost)}</Typography>
-          </Grid>
         </Grid>
-      </Grid>
-    </Paper>
-  )
+      </Paper>
+    );
+  }
 }
 
-export default withStyles(styles)(Card);
+export default withStyles(styles)(withRouter(Card));
