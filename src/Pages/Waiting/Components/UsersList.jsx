@@ -19,6 +19,11 @@ const styles = theme => ({
         backgroundColor: 'inherit',
         padding: 0,
     },
+    divider: {
+        backgroundColor: 'black',
+        marginLeft: 10,
+        marginRight: 10
+    }
 });
 
 class UsersList extends Component {
@@ -33,7 +38,7 @@ class UsersList extends Component {
       <List className={classes.root} subheader={<li />}>
         {users.map((name, index) => (
           <Fragment key={index}>
-            <ListItem>
+            <ListItem >
               <ListItemText primary={ name } />
               {status[index] && (
                 <SvgIcon>
@@ -41,7 +46,7 @@ class UsersList extends Component {
                 </SvgIcon>
               )}
             </ListItem>
-            <Divider />
+            <Divider classes={{ root: classes.divider }}/>
           </Fragment>
         ))}
       </List>

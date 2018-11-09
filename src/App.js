@@ -15,11 +15,13 @@ class App extends Component {
     dislikes: [],
     allergies: [],
     categoryStates: {},
-    users: ["John", "Sherry", "Gabe"],
-    submitted: [true, true, true],
+    users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
+    submitted: [false, false, false, false, false],
     currentUser: "GUEST",
     groupOwner: "GUEST",
-    inviteCode: "000000"
+    inviteCode: "000000",
+    fakeJoin: false, // TBD
+    fakeSubmit: true
   }
 
   handlePreferenceChange = (preference, newTags)  => {
@@ -48,7 +50,7 @@ class App extends Component {
 
   // Appends user and randomly generated code to state
   createSession = (user) => {
-    let code = Math.random().toString(36).slice(-6)
+    let code = Math.random().toString(36).slice(-6).toUpperCase()
 
     const { users, submitted } = this.state
     this.setState({
@@ -72,6 +74,23 @@ class App extends Component {
     })
 
     console.log(`Joined ${user} to group with code ${code}`)
+  }
+
+  disableAnimation = (key) => {
+    if (key === 'fakeSubmit') {
+      console.log('Disabled fake submission')
+      this.setState({
+        submitted: this.state.submitted.fill(true),
+        fakeSubmit: false
+      })
+    } else if (key === 'fakeJoin') {
+      console.log('Disabled fake joining')
+      this.setState({
+        users: this.state.users.concat('Alex'),
+        submitted: this.state.submitted.concat(false),
+        fakeJoin: false
+      })
+    }
   }
 
   render() {
@@ -113,6 +132,9 @@ class App extends Component {
                 currentUser={this.state.currentUser}
                 inviteCode={this.state.inviteCode}
                 groupOwner={this.state.groupOwner}
+                fakeJoin={this.state.fakeJoin}
+                fakeSubmit={this.state.fakeSubmit}
+                disableAnimation={this.disableAnimation}
               />}
           />
           <Route exact path="/"

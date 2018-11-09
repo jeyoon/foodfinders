@@ -28,7 +28,6 @@ const styles = theme => ({
         width: '80%',
         height: '15%'
     },
-
     root: {
         ...theme.mixins.gutters(),
         textAlign: "right"
@@ -45,6 +44,8 @@ const styles = theme => ({
         height: '100%',
         boxSizing: 'borderBox',
         border: '1px solid #ccc',
+        paddingLeft: '10px',
+        paddingRight: '10px'
     },
     form: {
         height: '35%'

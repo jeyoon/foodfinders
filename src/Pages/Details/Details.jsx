@@ -31,7 +31,7 @@ class Details extends Component {
   render() {
     const { classes } = this.props;
     let info = this.saveInfo();
-    console.log(info)
+    
     return (
       <div className={classes.root}>
         <Header />

@@ -41,7 +41,9 @@ const styles = theme => ({
       height: '20%',
       boxSizing: 'borderBox',
       border: '1px solid #ccc',
-      margin: theme.spacing.unit
+      margin: theme.spacing.unit,
+      paddingLeft: '10px',
+      paddingRight: '10px'
     }
 });
 

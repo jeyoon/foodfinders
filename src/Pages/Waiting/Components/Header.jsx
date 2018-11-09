@@ -21,8 +21,8 @@ function Header(props) {
       <Typography variant="h5" gutterBottom>Welcome, {currentUser}!</Typography>
       <Typography variant="subtitle2">{
         hasSubmitted ?
-          (isOwner ? "Please click 'Submit' once your group is ready" : "Waiting for the group owner to submit")
-          : "Click 'Start' to enter your preferences" }</Typography>
+          (isOwner ? "Please click 'SUBMIT' once your group is ready" : "Waiting for the group owner to submit")
+          : "Click 'START' to enter your preferences" }</Typography>
       <Typography>Invite Code: {inviteCode}</Typography>
     </Paper>
   );

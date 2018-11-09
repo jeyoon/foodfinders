@@ -40,7 +40,6 @@ class Card extends Component {
         className={classes.root}
         onClick={
           function() {
-            console.log(cardInfo)
             this.sendDetails(cardInfo.title, cardInfo.address, cardInfo.description, cardInfo.category, cardInfo.img)
             this.props.history.push('/details')
           }.bind(this)}>

@@ -35,7 +35,7 @@ class Selection extends Component {
                 filtering restaurants based on culture and mealtime.</Typography><hr/>
               </Grid>
               <Grid align="center" item xs={12}>
-                  <img src={"forkAndspoon.jpg"} alt={"no pictrure 4 u"}/><hr/>
+                  <img src={"forkAndspoon.jpg"} /><hr/>
               </Grid>
               <Grid className={classes.root} container item xs={12}>
                   <Paper  elevation={1}>
