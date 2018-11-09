@@ -1,36 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import { Input, Modal } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
-
-//from http://www.javascriptkit.com/script/cut10.shtml
-function passWord() {
-    var pass1 = document.getElementById("code").value;
-
-        if (!pass1) {
-            window.history.go(-1);
-        }
-        if (pass1 === sessionStorage.getItem("userCode")) {
-            window.location.assign('/waiting');
-            return;
-        }
-        alert('Access Denied - Password Incorrect, Please Try Again.');
-        return " ";
-}
-
-function toggleOff() {
-    localStorage.setItem("isCreator", "false");
-}
-
-function name() {
-    sessionStorage.setItem("userName", document.getElementById("name").value)
-}
-
-
 
 function getModalStyle() {
     const top = 50;
@@ -45,85 +20,86 @@ function getModalStyle() {
 
 const styles = theme => ({
     paper: {
-        position: 'absolute',
-        align: theme.center,
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 2,
-        width: '80%',
-        height: '25%'
+      position: 'absolute',
+      align: theme.center,
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing.unit * 2,
+      width: '80%',
+      height: '25%'
     },
-
-      root: {
-            ...theme.mixins.gutters(),
-            textAlign: "right"
-        },
-        button: {
-            margin: theme.spacing.unit
-        },
-
-        textField: {
-                width: '80%',
-                borderRadius: '4px',
-                height: '20%',
-                boxSizing: 'borderBox',
-                border: '1px solid #ccc',
-                margin: theme.spacing.unit
-            }
+    root: {
+      ...theme.mixins.gutters(),
+      textAlign: "right"
+    },
+    button: {
+      margin: theme.spacing.unit
+    },
+    textField: {
+      width: '80%',
+      borderRadius: '4px',
+      height: '20%',
+      boxSizing: 'borderBox',
+      border: '1px solid #ccc',
+      margin: theme.spacing.unit
+    }
 });
 
 
 class SimpleModal extends React.Component {
     state = {
         open: false,
+        username: '',
+        inviteCode: ''
     };
 
-    handleOpen = () => {
-        this.setState({ open: true });
-    };
+    handleOpen = () => { this.setState({ open: true }); };
+    handleClose = () => { this.setState({ open: false }); };
 
-    handleClose = () => {
-        this.setState({ open: false });
-    };
+    handleJoin = () => {
+      const { username, inviteCode } = this.state
+      this.props.handleJoin(username, inviteCode)
+    }
 
     render() {
         const { classes } = this.props;
 
         return (
-            <div>
-                <Button variant="contained" className={classes.button} onClick={this.handleOpen}>Join Group</Button>
-                <Modal
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                    open={this.state.open}
-                >
-
-                    <div align="center" style={getModalStyle()} className={classes.paper}>
-                        <input
-                            id={"name"}
-                            className={classes.textField}
-                            type="text"
-                            placeholder="Enter Your Name"/><br/>
-                        <input
-                            id={"code"}
-                            className={classes.textField}
-                            type="text"
-                            placeholder="Enter Invite Code"/><br/>
-                        <Button
-                            onClick={() => {passWord(); name(); toggleOff()}}
-                            variant="contained"
-                        >Join</Button>
-                        <Button
-                            className={classes.button}
-                            ariaLable="Delete"
-                            variant="contained"
-                            onClick={this.handleClose}
-                        >Back</Button>
-
-                    </div>
-
-                </Modal>
+          <div>
+            <Button
+              variant="contained"
+              className={classes.button}
+              onClick={this.handleOpen}>Join Group</Button>
+            <Modal
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              open={this.state.open} >
+            <div align="center" style={getModalStyle()} className={classes.paper}>
+              <Input
+                className={classes.textField}
+                type="text"
+                placeholder="Enter Your Name"
+                onChange={event => this.setState({username: event.target.value})}/>
+              <Input
+                className={classes.textField}
+                type="text"
+                placeholder="Enter Invite Code"
+                onChange={event => this.setState({inviteCode: event.target.value})}/><br/>
+              <Button
+                className={classes.button}
+                variant="contained"
+                component={Link}
+                onClick={this.handleJoin}
+                to="/waiting">Join</Button>
+              <Button
+                className={classes.button}
+                aria-label="Delete"
+                variant="contained"
+                onClick={this.handleClose}
+              >Back</Button>
             </div>
+            </Modal>
+          </div>
         );
     }
 }

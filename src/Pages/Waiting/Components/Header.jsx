@@ -14,11 +14,15 @@ const styles = theme => ({
 });
 
 function Header(props) {
-  const { name, inviteCode, classes } = props;
+  const { currentUser, inviteCode, classes, isOwner, hasSubmitted } = props;
 
   return (
     <Paper elevation={1} className={classes.root}>
-      <Typography variant="h5">Welecome {name}! <br/>Waiting For Others to Join...</Typography>
+      <Typography variant="h5" gutterBottom>Welcome, {currentUser}!</Typography>
+      <Typography variant="subtitle2">{
+        hasSubmitted ?
+          (isOwner ? "Please click 'Submit' once your group is ready" : "Waiting for the group owner to submit")
+          : "Click 'Start' to enter your preferences" }</Typography>
       <Typography>Invite Code: {inviteCode}</Typography>
     </Paper>
   );

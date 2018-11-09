@@ -1,11 +1,11 @@
 /* from https://codesandbox.io/s/z41p577zp */
 import React from 'react';
 import PropTypes from 'prop-types'
-import Modal from '@material-ui/core/Modal';
+import { Input, Modal } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom'
 
 function getModalStyle() {
     const top = 50;
@@ -17,18 +17,6 @@ function getModalStyle() {
         transform: `translate(-${top}%, -${left}%)`,
     };
 }
-function codeAndName() {
-    let code = Math.random().toString(36).substring(6);
-    sessionStorage.setItem("userCode", code);
-    let name = document.getElementById("name").value;
-    sessionStorage.setItem("userName", name);
-}
-
-function toggleOn() {
-    localStorage.setItem("isCreator", "true");
-}
-
-
 
 const styles = theme => ({
     paper: {
@@ -48,7 +36,9 @@ const styles = theme => ({
     button: {
         margin: theme.spacing.unit
     },
-
+    input: {
+        margin: theme.spacing.unit,
+    },
     textField: {
         width: '80%',
         borderRadius: '4px',
@@ -56,7 +46,6 @@ const styles = theme => ({
         boxSizing: 'borderBox',
         border: '1px solid #ccc',
     },
-
     form: {
         height: '35%'
     }
@@ -66,59 +55,54 @@ const styles = theme => ({
 class SimpleModal extends React.Component {
     state = {
         open: false,
+        value: ''
     };
 
-    handleOpen = () => {
-        this.setState({ open: true });
-    };
+    handleOpen = () => { this.setState({ open: true }) };
+    handleClose = () => { this.setState({ open: false }) };
 
-    handleClose = () => {
-        this.setState({ open: false });
-    };
+    handleCreate = () => {
+      this.props.handleCreate(this.state.value)
+      this.props.history.push('/waiting')
+    }
 
     render() {
         const { classes } = this.props;
 
         return (
-            <div>
-                <div>
-                    <Button
-                        variant="contained"
+          <div>
+              <div>
+                <Button
+                  variant="contained"
+                  className={classes.button}
+                  onClick={this.handleOpen}>Create Group</Button>
+              </div>
+              <Modal
+                  aria-labelledby="simple-modal-title"
+                  aria-describedby="simple-modal-description"
+                  open={this.state.open}>
+                  <div align="center" style={getModalStyle()} className={classes.paper}>
+                      <form className={classes.form} onSubmit={this.handleCreate}>
+                        <Input className={classes.textField}
+                         type="text"
+                         placeholder="Enter Your Name"
+                         onChange={event => this.setState({value: event.target.value})}/>
+                      </form>
+                      <Button
                         className={classes.button}
-                        onClick={this.handleOpen}>Create Group</Button>
-                </div>
-                <Modal
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                    open={this.state.open}
-                >
-                    <div align="center" style={getModalStyle()} className={classes.paper}>
-                        <form id={"userName"} className={classes.form} action={"/waiting"} method={"get"}>
-                        <input className={classes.textField}
-                               id={"name"}
-                               type="text"
-                               name="name"
-                               placeholder="Enter Your Name"/>
-                        </form>
-                        <Button
-                            value={"Submit"}
-                            type="submit"
-                            form={"userName"}
-                            className={classes.button}
-                            variant={"contained"}
-                            component={Link}
-                            onClick={() => {codeAndName(); toggleOn()}}
+                        variant="contained"
+                        component={Link}
+                        onClick={this.handleCreate}
+                        to="/waiting">Create</Button>
+                      <Button
+                        className={classes.button}
+                        aria-label="Delete"
+                        variant="contained"
+                        onClick={this.handleClose}>Back</Button>
+                  </div>
 
-                            to="/waiting">Create</Button>
-                        <Button
-                            className={classes.button}
-                            ariaLable="Delete"
-                            variant="contained"
-                            onClick={this.handleClose}>Back</Button>
-                    </div>
-
-                </Modal>
-            </div>
+              </Modal>
+          </div>
         );
     }
 }
@@ -128,6 +112,6 @@ SimpleModal.propTypes = {
 };
 
 // We need an intermediary variable for handling the recursive nesting.
-const SimpleModalWrapped = withStyles(styles)(SimpleModal);
+const SimpleModalWrapped = withStyles(styles)(withRouter(SimpleModal));
 
 export default SimpleModalWrapped;

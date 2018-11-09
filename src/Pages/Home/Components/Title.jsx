@@ -29,7 +29,7 @@ function Title(props) {
       <Grid container>
         <Grid item xs={12}>
           <Toolbar align="Center">
-            <Typography variant='title' className={classes.grow}>
+            <Typography variant='h6' className={classes.grow}>
               FoodFinders
             </Typography>
           </Toolbar>

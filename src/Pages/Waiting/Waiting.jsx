@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Header from "./Components/Header";
-import List from "./Components/List";
-import {Grid, Button} from "@material-ui/core"
-import {Link} from "react-router-dom";
+import UsersList from "./Components/UsersList";
+import { Grid, Button } from "@material-ui/core"
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  }
 });
 function toggleButton() {
     document.addEventListener("DOMContentLoaded", function toggle() {
@@ -18,51 +22,49 @@ function toggleButton() {
     });
 }
 
-
 class Waiting extends Component {
-    constructor(props) {
-        super(props);
-        this.state = this.props.preferences
-    }
 
-    render() {
-        toggleButton();
+  render() {
+    const { classes, users, submitted, currentUser, inviteCode, groupOwner } = this.props
+    let hasSubmitted = submitted[users.indexOf(currentUser)]
 
-        return (
-            <div>
-                <Header
-                    name={sessionStorage.getItem("userName")}
-                    inviteCode={sessionStorage.getItem("userCode")} /><hr/>
-                <List/>
-                <hr/>
-                <Grid container direction='column'>
-                    <Grid container item>
-                      <Grid align="flexStart" item xs={6}>
-                          <Button
-                              style={{ marginLeft: 50 }}
-                              variant="contained"
-                              component={Link} to="/">Leave</Button>
-                      </Grid>
-                      <Grid align="end" item xs={6}>
-                          <Button
-                              style={{ marginRight: 50 }}
-                              variant="contained"
-                              component={Link}
-                              to="/preferences" >Start</Button>
-                      </Grid>
-                    </Grid>
-                    <Grid container item alignItems="center" justify="center">
-                      <Button id="submit"
-                              variant="contained"
-                              component={Link}
-                              to="/selection">Submit</Button>
-                    </Grid>
+    // TODO combine users & 'submitted' as dictionary
+    return (
+      <div className={classes.root} >
+        <Header
+          currentUser={currentUser}
+          inviteCode={inviteCode}
+          hasSubmitted={hasSubmitted}
+          isOwner={currentUser === groupOwner} /><hr/>
+
+        <UsersList
+          onSubmit={this.handleSubmit}
+          users={users}
+          status={submitted} /><hr/>
+          {console.log(submitted)}
+        <Grid container spacing={16} direction='column'>
+            <Grid container item alignItems='center' xs={12}>
+              <Grid item style={{textAlign: "center"}} xs={6}>
+                  <Button variant="contained" component={Link} to="/" >Leave</Button>
+                  </Grid>
+              <Grid item style={{textAlign: "center"}} xs={6}>
+                  <Button variant="contained" component={Link} to="/preferences" >{
+                    !hasSubmitted ? "START" : "EDIT"
+                  }</Button>
+              </Grid>
+            </Grid>
+            {(currentUser === groupOwner) && (
+              <Grid container item justify="center" xs={12}>
+                <Grid item xs={6}>
+                  <Button variant="contained" component={Link} to="/results" fullWidth >Submit</Button>
                 </Grid>
-            </div>
+              </Grid>
+            )}
+        </Grid>
 
-        );
-
-    }
+      </div>
+    );
+  }
 }
 
 export default withStyles(styles)(Waiting);
