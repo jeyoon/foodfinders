@@ -20,6 +20,12 @@ const styles = theme => ({
     maxHeight: '100%',
   },
 });
+function sendDetails(name, address, description, category) {
+  localStorage.setItem("detailsName", name);
+  localStorage.setItem("detailsDescription", description);
+  localStorage.setItem("detailsAdress", address);
+  localStorage.setItem("detailsCategory", category);
+}
 
 function Card(props) {
   const { classes, cardInfo } = props;
@@ -27,7 +33,8 @@ function Card(props) {
     <Paper className={classes.root}>
       <Grid container spacing={16}>
         <Grid item xs={5}>
-          <ButtonBase component={Link} to="/details" className={classes.image}>
+          <ButtonBase onClick={() => {sendDetails(cardInfo.title, cardInfo.address)}}
+                      component={Link} to="/details" className={classes.image}>
             <img className={classes.img} alt="complex" src={cardInfo.img}/>
           </ButtonBase>
         </Grid>
