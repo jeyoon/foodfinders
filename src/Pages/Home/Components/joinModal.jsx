@@ -22,6 +22,10 @@ function passWord() {
         return " ";
 }
 
+function toggleOff() {
+    localStorage.setItem("isCreator", "false");
+}
+
 function name() {
     sessionStorage.setItem("userName", document.getElementById("name").value)
 }
@@ -106,7 +110,7 @@ class SimpleModal extends React.Component {
                             type="text"
                             placeholder="Enter Invite Code"/><br/>
                         <Button
-                            onClick={() => {passWord(); name()}}
+                            onClick={() => {passWord(); name(); toggleOff()}}
                             variant="contained"
                         >Join</Button>
                         <Button

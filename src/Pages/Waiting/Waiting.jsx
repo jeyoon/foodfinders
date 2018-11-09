@@ -7,6 +7,16 @@ import {Link} from "react-router-dom";
 
 const styles = theme => ({
 });
+function toggleButton() {
+    document.addEventListener("DOMContentLoaded", function toggle() {
+
+        if (localStorage.getItem("isCreator").value !== "true") {
+            document.getElementById("submit").style.visibility = "hidden";
+            alert("this ran");
+        }
+
+    });
+}
 
 
 class Waiting extends Component {
@@ -15,9 +25,9 @@ class Waiting extends Component {
         this.state = this.props.preferences
     }
 
-
-
     render() {
+        toggleButton();
+
         return (
             <div>
                 <Header
@@ -42,11 +52,16 @@ class Waiting extends Component {
                       </Grid>
                     </Grid>
                     <Grid container item alignItems="center" justify="center">
-                      <Button variant="contained" component={Link} to="/selection">Submit</Button>
+                      <Button id="submit"
+                              variant="contained"
+                              component={Link}
+                              to="/selection">Submit</Button>
                     </Grid>
                 </Grid>
             </div>
+
         );
+
     }
 }
 

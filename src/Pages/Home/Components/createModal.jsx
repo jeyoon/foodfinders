@@ -24,6 +24,10 @@ function codeAndName() {
     sessionStorage.setItem("userName", name);
 }
 
+function toggleOn() {
+    localStorage.setItem("isCreator", "true");
+}
+
 
 
 const styles = theme => ({
@@ -103,7 +107,7 @@ class SimpleModal extends React.Component {
                             className={classes.button}
                             variant={"contained"}
                             component={Link}
-                            onClick={() => {codeAndName()}}
+                            onClick={() => {codeAndName(); toggleOn()}}
 
                             to="/waiting">Create</Button>
                         <Button
