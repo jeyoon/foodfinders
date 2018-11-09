@@ -29,7 +29,7 @@ function Header(props) {
       <Grid container>
         <Grid item xs={12}>
           <Toolbar>
-            <Typography variant='title' className={classes.grow}>
+            <Typography variant='h6' className={classes.grow}>
               Categories
             </Typography>
             <Button component={Link} to="/waiting">Back</Button>

@@ -7,7 +7,6 @@ import Home from "./Pages/Home/Home";
 import Waiting from "./Pages/Waiting/Waiting";
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 var _ = require('lodash');
 
 class App extends Component {
@@ -15,7 +14,12 @@ class App extends Component {
     likes: [],
     dislikes: [],
     allergies: [],
-    categoryStates: {'American': 'img_liked'}
+    categoryStates: {'American': 'img_liked'},
+    users: ["John", "Sherry", "Gabe"],
+    submitted: [true, true, true],
+    currentUser: "GUEST",
+    groupOwner: "GUEST",
+    inviteCode: "000000"
   }
 
   handlePreferenceChange = (preference, newTags)  => {
@@ -30,6 +34,45 @@ class App extends Component {
 
   // https://stackoverflow.com/questions/7113865/how-to-copy-clone-a-hash-object-in-jquery
 
+  // Sets index in state.submitted corresponding to $user as true
+  handlePreferenceSubmit = () => {
+    console.log('Submitting preferences')
+    const { users, currentUser, submitted } = this.state
+    let newSubmitState = [...submitted]
+
+    newSubmitState[users.indexOf(currentUser)] = true
+    this.setState({ submitted: newSubmitState })
+    console.log(newSubmitState)
+  }
+
+  // Appends user and randomly generated code to state
+  createSession = (user) => {
+    let code = Math.random().toString(36).slice(-6)
+
+    const { users, submitted } = this.state
+    this.setState({
+      users: users.concat(user),
+      submitted: submitted.concat(false),
+      currentUser: user,
+      inviteCode: code,
+      groupOwner: user
+    })
+
+    console.log(`Created group for ${user} with code ${code}`)
+  }
+
+  joinSession = (user, code) => {
+    const { users, submitted } = this.state
+    this.setState({
+      users: users.concat(user),
+      submitted: submitted.concat(false),
+      currentUser: user,
+      inviteCode: code
+    })
+
+    console.log(`Joined ${user} to group with code ${code}`)
+  }
+
   render() {
     return (
       <Router>
@@ -38,8 +81,11 @@ class App extends Component {
             path="/preferences"
             render={props =>
               <Preferences
-                preferences={_.pick(this.state, ['likes', 'dislikes', 'allergies'])}
+                inviteCode={this.inviteCode}
                 onPreferenceChange={this.handlePreferenceChange}
+                onPreferenceSubmit={this.handlePreferenceSubmit}
+                preferences={_.pick(this.state, ['likes', 'dislikes', 'allergies'])}
+                inviteCode={this.state.inviteCode}
               />}
           />
           <Route
@@ -52,8 +98,24 @@ class App extends Component {
             />
           <Route path="/results" component={Results}/>
           <Route path="/details" component={Details}/>
-          <Route path="/waiting" component={Waiting}/>
-          <Route exact path="/" component={Home}/>
+          <Route
+            path="/waiting"
+            render={props =>
+              <Waiting
+                users={this.state.users}
+                submitted={this.state.submitted}
+                currentUser={this.state.currentUser}
+                inviteCode={this.state.inviteCode}
+                groupOwner={this.state.groupOwner}
+              />}
+          />
+          <Route exact path="/"
+            render={props =>
+              <Home
+                handleCreate={this.createSession}
+                handleJoin={this.joinSession}
+              />}
+          />
         </div>
       </Router>
     );
