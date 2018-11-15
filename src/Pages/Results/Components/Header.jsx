@@ -3,6 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { Button, Grid, Input } from '@material-ui/core';
+import ConfirmModal from './homeConfirm.jsx';
+
 
 const styles = theme => ({
   root: {
@@ -32,8 +34,8 @@ function Header(props) {
             <Typography variant='h6' className={classes.grow}>
               Results
             </Typography>
-            <Button component={Link} to="/selection">Back</Button>
-            <Button component={Link} to="/">Home</Button>
+              <Button component={Link} to="/selection">Back</Button>
+              <ConfirmModal/>
           </Toolbar>
         </Grid>
       </Grid>

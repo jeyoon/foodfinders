@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
-
+import { Typography } from "@material-ui/core";
 
 function getModalStyle() {
     const top = 50;
@@ -64,47 +64,40 @@ class SimpleModal extends React.Component {
     handleClose = () => { this.setState({ open: false }) };
 
     handleCreate = () => {
-      this.props.handleCreate(this.state.value);
-      this.props.history.push('/waiting')
-    };
+        this.props.handleCreate(this.state.value)
+        this.props.history.push('/waiting')
+    }
 
     render() {
         const { classes } = this.props;
 
         return (
-          <div>
-              <div>
-                <Button
-                  variant="contained"
-                  className={classes.button}
-                  onClick={this.handleOpen}>Create Group</Button>
-              </div>
-              <Modal
-                  aria-labelledby="simple-modal-title"
-                  aria-describedby="simple-modal-description"
-                  open={this.state.open}>
-                  <div align="center" style={getModalStyle()} className={classes.paper}>
-                      <form className={classes.form} onSubmit={this.handleCreate}>
-                        <Input className={classes.textField}
-                         type="text"
-                         placeholder="Enter Your Name"
-                         onChange={event => this.setState({value: event.target.value})}/>
-                      </form>
-                      <Button
-                        className={classes.button}
-                        variant="contained"
-                        component={Link}
-                        onClick={this.handleCreate}
-                        to="/waiting">Create</Button>
-                      <Button
-                        className={classes.button}
-                        aria-label="Delete"
-                        variant="contained"
-                        onClick={this.handleClose}>Back</Button>
-                  </div>
+            <div>
+                <div>
+                    <Button style={{width:90}} variant="contained" onClick={this.handleOpen} >Leave</Button>
+                </div>
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={this.state.open}>
+                    <div align="center" style={getModalStyle()} className={classes.paper}>
 
-              </Modal>
-          </div>
+                        <Typography variant="contained">Are you sure?</Typography>
+                        <Button
+                            className={classes.button}
+                            variant="contained"
+                            component={Link}
+                            onClick={this.handleCreate}
+                            to="/">Yes</Button>
+                        <Button
+                            className={classes.button}
+                            aria-label="Delete"
+                            variant="contained"
+                            onClick={this.handleClose}>No</Button>
+                    </div>
+
+                </Modal>
+            </div>
         );
     }
 }

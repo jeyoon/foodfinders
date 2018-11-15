@@ -4,6 +4,8 @@ import Header from "./Components/Header";
 import UsersList from "./Components/UsersList";
 import { Grid, Button } from "@material-ui/core"
 import { Link } from "react-router-dom";
+import LeaveConfirm from "./Components/leaveConfirm"
+import SubmitConfirm from "./Components/submitConfirm"
 
 const styles = theme => ({
   root: {
@@ -11,6 +13,7 @@ const styles = theme => ({
     flexDirection: 'column'
   }
 });
+
 
 class Waiting extends Component {
 
@@ -43,6 +46,10 @@ class Waiting extends Component {
       })
     }
   }
+  state = {
+      open: false,
+  };
+  handleOpen = () => { this.setState({ open: true }) };
 
   render() {
     const { classes, users, currentUser, inviteCode, groupOwner } = this.props
@@ -50,6 +57,7 @@ class Waiting extends Component {
     let hasSubmitted = submitted[users.indexOf(currentUser)]
 
     // TODO combine users & 'submitted' as dictionary
+
     return (
       <div className={classes.root} >
         <Header
@@ -66,7 +74,7 @@ class Waiting extends Component {
         <Grid container spacing={16} direction='column'>
             <Grid container item alignItems='center' xs={12}>
               <Grid item style={{textAlign: "center"}} xs={6}>
-                <Button style={{width:90}} variant="contained" component={Link} to="/" >Leave</Button>
+                <LeaveConfirm/>
               </Grid>
               <Grid item style={{textAlign: "center"}} xs={6}>
                 <Button style={{width:90}} variant="contained" component={Link} to="/preferences" >{
@@ -79,11 +87,15 @@ class Waiting extends Component {
               <Grid container item justify="center" xs={12}>
                 <Grid item xs={6}>
                   <Button
+                    id={"submit"}
                     variant="contained"
                     component={Link}
                     to="/selection"
                     fullWidth
-                    disabled={!submitted.every(Boolean)} >Submit</Button>
+                    disabled={!submitted.every(Boolean)}
+                    onCLick={this.handleOpen}
+                    >Submit</Button>
+                    <SubmitConfirm submitBool={this.open}/>
                 </Grid>
               </Grid>
             )}
