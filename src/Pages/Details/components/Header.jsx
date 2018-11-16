@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { Button, Grid, Input } from '@material-ui/core';
+import HomeConfirm from './homeConfirm.jsx';
 
 const styles = theme => ({
   root: {
@@ -33,7 +34,8 @@ function Header(props) {
               Details
             </Typography>
             <Button component={Link} to="/results">Back</Button>
-            <Button component={Link} to="/">Home</Button>
+            <HomeConfirm/>
+
           </Toolbar>
         </Grid>
       </Grid>
