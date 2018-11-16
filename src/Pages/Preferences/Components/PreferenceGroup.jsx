@@ -13,7 +13,6 @@ class PreferenceGroup extends Component {
   }
 
   handleChange = tags => {
-    console.log(tags)
     this.setState({ tags });
     this.props.handleChange(this.props.label, tags)
   };
