@@ -45,7 +45,6 @@ class App extends Component {
 
     newSubmitState[users.indexOf(currentUser)] = true
     this.setState({ submitted: newSubmitState })
-    console.log(newSubmitState)
   }
 
   // Appends user and randomly generated code to state
