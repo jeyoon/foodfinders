@@ -70,14 +70,18 @@ class SimpleModal extends React.Component {
 
     render() {
         const { classes, submitBoolean} = this.props;
+        let submit = false;
+        if (submitBoolean) {
+            submit = true;
+        }
         return (
             <div>
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
-                    open={submitBoolean}>
+                    open={submit}>
                     <div align="center" style={getModalStyle()} className={classes.paper}>
-                        <Typography variant="contained">Are you sure?</Typography>
+                        <Typography>Are you sure you want to submit?</Typography>
                         <Button
                             className={classes.button}
                             variant="contained"

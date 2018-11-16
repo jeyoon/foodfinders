@@ -82,12 +82,11 @@ class SimpleModal extends React.Component {
                     open={this.state.open}>
                     <div align="center" style={getModalStyle()} className={classes.paper}>
 
-                        <Typography variant="contained">Are you sure?</Typography>
+                        <Typography>Are you sure you want to leave?</Typography>
                         <Button
                             className={classes.button}
                             variant="contained"
                             component={Link}
-                            onClick={this.handleCreate}
                             to="/">Yes</Button>
                         <Button
                             className={classes.button}

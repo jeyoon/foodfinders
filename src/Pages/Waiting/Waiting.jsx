@@ -93,7 +93,7 @@ class Waiting extends Component {
                     to="/selection"
                     fullWidth
                     disabled={!submitted.every(Boolean)}
-                    onCLick={this.handleOpen}
+                    onClick={this.handleOpen}
                     >Submit</Button>
                     <SubmitConfirm submitBool={this.open}/>
                 </Grid>
