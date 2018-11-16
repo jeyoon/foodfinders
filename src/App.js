@@ -68,7 +68,6 @@ class App extends Component {
     Object.keys(categoryGroups).map(category => { categoryStates[category] = 'img_neutral' })
 
     const { dislikes, allergies } = this.state
-    console.log('B', dislikes, allergies)
 
     // Applying dislikes and allergies as filters
     let filteredRestaurants = _.filter(
@@ -81,7 +80,6 @@ class App extends Component {
 
     let filteredCategoryStates = _.groupBy(filteredRestaurants, restaurant => restaurant.category)
     filteredCategoryStates = _.pickBy(categoryStates, (categoryState, category) => _.has(categories, category))
-    console.log('A', filteredCategoryStates)
 
     this.setState({
       restaurantData: filteredRestaurants,
