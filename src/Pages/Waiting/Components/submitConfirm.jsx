@@ -82,17 +82,18 @@ class SimpleModal extends React.Component {
                     open={submit}>
                     <div align="center" style={getModalStyle()} className={classes.paper}>
                         <Typography>Are you sure you want to submit?</Typography>
+
+                        <Button
+                            className={classes.button}
+                            aria-label="Delete"
+                            variant="contained"
+                            onClick={this.handleClose}>No</Button>
                         <Button
                             className={classes.button}
                             variant="contained"
                             component={Link}
                             onClick={this.handleCreate}
                             to="/">Yes</Button>
-                        <Button
-                            className={classes.button}
-                            aria-label="Delete"
-                            variant="contained"
-                            onClick={this.handleClose}>No</Button>
                     </div>
 
                 </Modal>
