@@ -24,7 +24,7 @@ const styles = theme => ({
 });
 
 function Header(props) {
-  const { classes } = props;
+  const { classes, resetState } = props;
 
   return (
     <AppBar position='static' className={classes.root}>
@@ -34,8 +34,8 @@ function Header(props) {
             <Typography variant='h6' className={classes.grow}>
               Results
             </Typography>
-              <Button component={Link} to="/selection">Back</Button>
-              <ConfirmModal/>
+            <Button component={Link} to="/selection">Back</Button>
+            <ConfirmModal resetState={resetState} />
           </Toolbar>
         </Grid>
       </Grid>

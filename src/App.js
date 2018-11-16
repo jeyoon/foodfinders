@@ -26,7 +26,7 @@ class App extends Component {
       fakeSubmit: true
     }
 
-    if (window.location.pathname != "/" && this.state.currentUser === undefined) {
+    if (window.location.pathname !== "/" && this.state.currentUser === undefined) {
       this.state.currentUser = 'GUEST'
       this.state.groupOwner = 'GUEST'
       this.state.users = this.state.users.concat('GUEST')
@@ -102,6 +102,23 @@ class App extends Component {
     }
   }
 
+  resetState = () => {
+    console.log("Resetting app state")
+    this.setState({
+      likes: [],
+      dislikes: [],
+      allergies: [],
+      categoryStates: {},
+      users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
+      submitted: [false, false, false, false, false],
+      currentUser: undefined,
+      groupOwner: undefined,
+      inviteCode: "000000",
+      fakeJoin: false, // TBD
+      fakeSubmit: true
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -129,6 +146,7 @@ class App extends Component {
             path="/results" render={props =>
               <Results
                 categoryStates={this.state.categoryStates}
+                resetState={this.resetState}
               />}
             />
           <Route path="/details" component={Details}/>
@@ -144,6 +162,7 @@ class App extends Component {
                 fakeJoin={this.state.fakeJoin}
                 fakeSubmit={this.state.fakeSubmit}
                 disableAnimation={this.disableAnimation}
+                resetState={this.resetState}
               />}
           />
           <Route exact path="/"

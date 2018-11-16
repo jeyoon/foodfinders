@@ -27,7 +27,7 @@ class Results extends Component {
 
     return (
       <div>
-        <Header />
+        <Header resetState={ this.props.resetState } />
         {Object.keys(groups).map(category =>
           <CardPanel
             key={category}

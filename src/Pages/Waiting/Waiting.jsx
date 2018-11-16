@@ -20,7 +20,10 @@ class Waiting extends Component {
   constructor(props) {
     super(props)
     const { currentUser, users, fakeJoin, fakeSubmit, disableAnimation, submitted } = this.props
-    this.state = { submitted: submitted }
+    this.state = {
+      submitted: submitted,
+      open: false
+    }
 
     if (fakeSubmit) {
       let fakeUsers = submitted.filter((hasSubmitted, index) => users[index] !== currentUser)
@@ -45,14 +48,13 @@ class Waiting extends Component {
         })
       })
     }
+
   }
-  state = {
-      open: false,
-  };
+
   handleOpen = () => { this.setState({ open: true }) };
 
   render() {
-    const { classes, users, currentUser, inviteCode, groupOwner } = this.props
+    const { classes, users, currentUser, inviteCode, groupOwner, resetState } = this.props
     const { submitted } = this.state
     let hasSubmitted = submitted[users.indexOf(currentUser)]
 
@@ -74,7 +76,7 @@ class Waiting extends Component {
         <Grid container spacing={16} direction='column'>
             <Grid container item alignItems='center' xs={12}>
               <Grid item style={{textAlign: "center"}} xs={6}>
-                <LeaveConfirm/>
+                <LeaveConfirm resetState={resetState} />
               </Grid>
               <Grid item style={{textAlign: "center"}} xs={6}>
                 <Button style={{width:90}} variant="contained" component={Link} to="/preferences" >{

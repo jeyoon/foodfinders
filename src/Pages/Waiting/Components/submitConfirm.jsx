@@ -63,7 +63,7 @@ class SimpleModal extends React.Component {
     handleOpen = () => { this.setState({ open: true }) };
     handleClose = () => { this.setState({ open: false }) };
 
-    handleCreate = () => {
+    handleReset = () => {
         this.props.handleCreate(this.state.value)
         this.props.history.push('/waiting')
     }
@@ -92,7 +92,7 @@ class SimpleModal extends React.Component {
                             className={classes.button}
                             variant="contained"
                             component={Link}
-                            onClick={this.handleCreate}
+                            onClick={this.handleReset}
                             to="/">Yes</Button>
                     </div>
 
