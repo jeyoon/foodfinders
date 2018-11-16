@@ -1,11 +1,9 @@
 /* from https://codesandbox.io/s/z41p577zp */
 import React from 'react';
 import PropTypes from 'prop-types'
-import { Input, Modal } from '@material-ui/core';
+import { Input, Modal, Button, Typography } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom';
 
 
 function getModalStyle() {
@@ -27,13 +25,16 @@ const styles = theme => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit *2,
         width: '80%',
-        height: '15%'
     },
     root: {
         ...theme.mixins.gutters(),
         textAlign: "right"
     },
-    button: {
+    mainButton: {
+        margin: theme.spacing.unit,
+        width: 150
+    },
+    modalButton: {
         margin: theme.spacing.unit
     },
     input: {
@@ -57,15 +58,22 @@ const styles = theme => ({
 class SimpleModal extends React.Component {
     state = {
         open: false,
+        error: false,
         value: ''
     };
 
     handleOpen = () => { this.setState({ open: true }) };
     handleClose = () => { this.setState({ open: false }) };
 
-    handleCreate = () => {
-      this.props.handleCreate(this.state.value);
-      this.props.history.push('/waiting')
+    handleCreate = (event) => {
+      const { value } = this.state
+      if (value.trim()) {
+        this.props.handleCreate(this.state.value);
+        this.props.history.push('/waiting')
+      } else {
+        event.preventDefault()
+        this.setState({ error: true })
+      }
     };
 
     render() {
@@ -76,7 +84,7 @@ class SimpleModal extends React.Component {
               <div>
                 <Button
                   variant="contained"
-                  className={classes.button}
+                  className={classes.mainButton}
                   onClick={this.handleOpen}>Create Group</Button>
               </div>
               <Modal
@@ -88,16 +96,22 @@ class SimpleModal extends React.Component {
                         <Input className={classes.textField}
                          type="text"
                          placeholder="Enter Your Name"
+                         value={this.state.value}
                          onChange={event => this.setState({value: event.target.value})}/>
                       </form>
+                      { this.state.error && (
+                        <Typography variant="subtitle1" style={{ marginTop: 15, color: '#f50000' }}>
+                          Your name cannot be an empty string.
+                        </Typography>
+                      )}
                       <Button
-                        className={classes.button}
+                        className={classes.modalButton}
                         variant="contained"
                         component={Link}
                         onClick={this.handleCreate}
                         to="/waiting">Create</Button>
                       <Button
-                        className={classes.button}
+                        className={classes.modalButton}
                         aria-label="Delete"
                         variant="contained"
                         onClick={this.handleClose}>Back</Button>

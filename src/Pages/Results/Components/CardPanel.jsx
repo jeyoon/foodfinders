@@ -16,6 +16,8 @@ var _ = require('lodash/collection');
 const styles = theme => ({
   root: {
     width: '100%',
+    marginTop: 10,
+    marginBottom: 10
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -23,7 +25,7 @@ const styles = theme => ({
   },
   panel: {
     marginTop: 5,
-    marginBottom: 5
+    marginBottom: 5,
   }
 });
 
@@ -52,7 +54,7 @@ class CardPanel extends Component {
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Typography className={classes.heading}>{category}</Typography>
             </ExpansionPanelSummary>
-            <ExpansionPanelDetails>
+            <ExpansionPanelDetails style={{ paddingLeft: 12, paddingRight: 12 }}>
               <Grid container direction="column" spacing={8}>
                 {cards.map(cardInfo =>
                   <Grid key={cardInfo.title} item xs>

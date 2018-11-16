@@ -1,52 +1,67 @@
 import React, { Component } from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, Typography } from '@material-ui/core';
+import { Grid, Paper, Typography, List } from '@material-ui/core';
+
+import ReactStars from 'react-stars';
 import Header from './components/Header';
+import Review from './components/Review';
 import { Burger, Sushi, Noodle, Steak } from '../Selection/Assets';
-import {Grid} from '@material-ui/core';
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh'
+    minHeight: '95vh'
   },
   grow: {
-    flex: 1
+    flex: 1,
+    marginTop: 10
   }
 });
 
 class Details extends Component {
 
-  saveInfo() {
-    var info = {};
-    info.name=localStorage.getItem("detailsName");
-    info.address=localStorage.getItem("detailsAddress");
-    info.description=localStorage.getItem("detailsDescription");
-    info.category=localStorage.getItem("detailsCategory");
-    info.image=localStorage.getItem("detailsImage");
-    return info;
-  }
-
   render() {
     const { classes } = this.props;
-    let info = this.saveInfo();
-    
+    let info = JSON.parse(localStorage.getItem("cardInfo"));
+    console.log(info)
+
     return (
       <div className={classes.root}>
         <Header />
-        <Grid container>
-        <Paper align="center" className={classes.grow}>
-          <img src={info.image} alt={"UNDEFINED"}/>
+        <Paper className={classes.grow}>
+          <Grid container direction='column'>
+            <Grid container item justify='center'>
+              <Paper align="center" style={{ width: '100%', margin: 10, height: 100 }}>
+                <Grid item>
+                  <img src={info.img} />
+                </Grid>
+              </Paper>
+            </Grid>
 
-          <Typography variant="h4">
-              {info.name}
-          </Typography>
-          <Typography variant="subtitle1">
-            {info.description}
-          </Typography>
+            <Grid container item style={{ padding: 5 }}>
+              <Grid container item>
+                <Grid item xs={8}>
+                  <Typography variant="h4">{info.title}</Typography>
+                  <Typography variant="subtitle1">{info.description}</Typography>
+                </Grid>
+                <Grid container item direction='column' alignItems='flex-end' xs={4}>
+                  <Grid item><Typography variant="subtitle1">{"$".repeat(info.cost)}</Typography></Grid>
+                  <Grid item><ReactStars count={5} size={24} value={info.rating} color2={'#ffd700'} edit={false} /></Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            <Grid>
+              <Typography variant="h5" style={{ padding: 5, marginTop: 20 }}>Menu</Typography>
+              <List>
+                { Object.entries(info.items).map(([name, desc]) => (
+                  <Review key={name} name={name} desc={desc} />
+                ))}
+              </List>
+            </Grid>
+          </Grid>
         </Paper>
-        </Grid>
       </div>
     )
   }

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Paper, Grid, Typography, ButtonBase } from "@material-ui/core";
 import Location from '../../Selection/Assets/Location.png'
 import { withRouter } from 'react-router-dom'
+import ReactStars from 'react-stars';
 
 const styles = theme => ({
   root: {
@@ -20,19 +21,11 @@ const styles = theme => ({
 
 class Card extends Component {
 
-  constructor(props) {
-    super(props)
+  saveDetails(name, address, description, category, image) {
+    const { cardInfo } = this.props;
+    localStorage.setItem("cardInfo", JSON.stringify(cardInfo))
   }
 
-  sendDetails(name, address, description, category, image) {
-    localStorage.setItem("detailsName", name);
-    localStorage.setItem("detailsAddress", address);
-    localStorage.setItem("detailsDescription", description);
-    localStorage.setItem("detailsCategory", category);
-    localStorage.setItem("detailsImage", image)
-  }
-
-  // onClick={this.props.history.push('/details')}
   render() {
     const { classes, cardInfo } = this.props;
     return (
@@ -40,16 +33,17 @@ class Card extends Component {
         className={classes.root}
         onClick={
           function() {
-            this.sendDetails(cardInfo.title, cardInfo.address, cardInfo.description, cardInfo.category, cardInfo.img)
+            this.saveDetails()
             this.props.history.push('/details')
           }.bind(this)}>
         <Grid container spacing={16}>
-          <Grid item xs={4} style={{ paddingTop: 35 }}>
+          <Grid item xs={3}>
             <ButtonBase component={Link} to="/details">
               <img className={classes.img} alt="complex" src={cardInfo.img}/>
             </ButtonBase>
           </Grid>
-          <Grid item xs={8} container>
+
+          <Grid container item xs={6} style={{ padding: 0 }}>
             <Grid item xs container direction="column" spacing={16}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
@@ -58,18 +52,21 @@ class Card extends Component {
                 <Typography gutterBottom>{cardInfo.description}</Typography>
                 <Typography color="textSecondary">{cardInfo.categories}</Typography>
               </Grid>
+
               <Grid container item>
-                <Grid>
+                <Grid item>
                   <img className={classes.img} alt="complex" src={Location}/>
                 </Grid>
-                <Grid>
+                <Grid item>
                   <Typography gutterBottom>{cardInfo.address}</Typography>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="subtitle2">{"$".repeat(cardInfo.cost)}</Typography>
-            </Grid>
+          </Grid>
+
+          <Grid container item direction='column' alignItems='flex-end' xs={3}>
+            <Grid item><Typography variant="subtitle2">{"$".repeat(cardInfo.cost)}</Typography></Grid>
+            <Grid item><ReactStars count={5} size={15} value={cardInfo.rating} color2={'#ffd700'} edit={false} /></Grid>
           </Grid>
         </Grid>
       </Paper>

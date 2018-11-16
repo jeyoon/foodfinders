@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Input, Modal } from '@material-ui/core';
+import { Input, Modal, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 function getModalStyle() {
     const top = 50;
@@ -26,14 +26,17 @@ const styles = theme => ({
       boxShadow: theme.shadows[5],
       padding: theme.spacing.unit * 2,
       width: '80%',
-      height: '25%'
     },
     root: {
       ...theme.mixins.gutters(),
       textAlign: "right"
     },
-    button: {
-      margin: theme.spacing.unit
+    mainButton: {
+      margin: theme.spacing.unit,
+      width: 150
+    },
+    modalButton: {
+      margin: theme.spacing.unit,
     },
     textField: {
       width: '80%',
@@ -51,6 +54,7 @@ const styles = theme => ({
 class SimpleModal extends React.Component {
     state = {
         open: false,
+        errorMessage: false,
         username: '',
         inviteCode: ''
     };
@@ -58,9 +62,23 @@ class SimpleModal extends React.Component {
     handleOpen = () => { this.setState({ open: true }); };
     handleClose = () => { this.setState({ open: false }); };
 
-    handleJoin = () => {
+    handleJoin = (event) => {
       const { username, inviteCode } = this.state
-      this.props.handleJoin(username, inviteCode)
+
+      let message = ''
+      if (!username.trim() || !inviteCode.trim()) {
+        message = 'Inputs cannot be an empty string.'
+      } else if (inviteCode.trim().length != 6) {
+        message = 'Invite code must be at least 6 characters.'
+      }
+
+      if (message) {
+        this.setState({ errorMessage: message })
+        event.preventDefault()
+      } else {
+        this.props.handleJoin(username, inviteCode)
+        this.props.history.push('/waiting')
+      }
     }
 
     render() {
@@ -70,7 +88,7 @@ class SimpleModal extends React.Component {
           <div>
             <Button
               variant="contained"
-              className={classes.button}
+              className={classes.mainButton}
               onClick={this.handleOpen}>Join Group</Button>
             <Modal
               aria-labelledby="simple-modal-title"
@@ -81,20 +99,27 @@ class SimpleModal extends React.Component {
                 className={classes.textField}
                 type="text"
                 placeholder="Enter Your Name"
+                 value={this.state.username}
                 onChange={event => this.setState({username: event.target.value})}/>
               <Input
                 className={classes.textField}
                 type="text"
                 placeholder="Enter Invite Code"
+                value={this.state.inviteCode}
                 onChange={event => this.setState({inviteCode: event.target.value})}/><br/>
+              { this.state.errorMessage && (
+                <Typography variant="subtitle1" style={{ marginTop: 15, color: '#f50000' }}>
+                  { this.state.errorMessage }
+                </Typography>
+              )}
               <Button
-                className={classes.button}
+                className={classes.modalButton}
                 variant="contained"
                 component={Link}
                 onClick={this.handleJoin}
                 to="/waiting">Join</Button>
               <Button
-                className={classes.button}
+                className={classes.modalButton}
                 aria-label="Delete"
                 variant="contained"
                 onClick={this.handleClose}
@@ -111,6 +136,6 @@ SimpleModal.propTypes = {
 };
 
 // We need an intermediary variable for handling the recursive nesting.
-const SimpleModalWrapped = withStyles(styles)(SimpleModal);
+const SimpleModalWrapped = withStyles(styles)(withRouter(SimpleModal));
 
 export default SimpleModalWrapped;

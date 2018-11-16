@@ -29,8 +29,10 @@ class Results extends Component {
       <div>
         <Header />
         {Object.keys(groups).map(category =>
-          <CardPanel key={category} category={category} cards={groups[category]}
-          shouldExpand={this.expandable(category)} shouldDisable={this.disableCategory(category)}/>
+          <CardPanel
+            key={category}
+            category={category} cards={groups[category]}
+            shouldExpand={this.expandable(category)} shouldDisable={this.disableCategory(category)} />
         )}
       </div>
     )
