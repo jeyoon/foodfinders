@@ -6,10 +6,11 @@ import { Button, Grid, Input } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
-    backgroundColor: "#D9A18C"
+    backgroundColor: "#D9A18C",
+    marginBottom: 30
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginLeft: -12,
