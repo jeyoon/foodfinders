@@ -19,7 +19,6 @@ class CategoryTile extends Component {
     super(props);
     const { category, categoryState, selectionHandler } = this.props;
 
-    // this.state = this.state.selections;
     this.state = { categoryState: categoryState }
 
     this.toggleImage = this.toggleImage.bind(this);
@@ -53,7 +52,7 @@ class CategoryTile extends Component {
     const { categoryState } = this.state
 
     return (
-      <Paper className={classes.tile} onClick={this.toggleImage} >
+      <Paper className={classes.tile} onClick={this.toggleImage}  >
         <img src={category[categoryState]} alt={category.title} />
         <Typography>{category.title}</Typography>
       </Paper>

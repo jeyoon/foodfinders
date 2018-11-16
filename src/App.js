@@ -5,11 +5,21 @@ import Results from "./Pages/Results/Results";
 import Details from "./Pages/Details/Details";
 import Home from "./Pages/Home/Home";
 import Waiting from "./Pages/Waiting/Waiting";
+import { restaurants } from "./Pages/Results/store";
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 var _ = require('lodash');
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    const groups = _.groupBy(restaurants, restaurant => restaurant.category)
+    Object.keys(groups).map(category => {
+      this.state.categoryStates[category] = 'img_neutral'
+    })
+  }
+
   state = {
     likes: [],
     dislikes: [],
@@ -93,6 +103,8 @@ class App extends Component {
   }
 
   render() {
+    const groups = _.groupBy(restaurants, restaurant => restaurant.category)
+
     return (
       <Router>
         <div>
