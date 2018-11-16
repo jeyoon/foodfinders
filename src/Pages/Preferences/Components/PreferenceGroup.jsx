@@ -13,9 +13,14 @@ class PreferenceGroup extends Component {
   }
 
   handleChange = tags => {
+    console.log(tags)
     this.setState({ tags });
     this.props.handleChange(this.props.label, tags)
   };
+
+  handleChangeInput = value => {
+    console.log(value)
+  }
 
   render() {
     const { tags } = this.state
@@ -24,7 +29,12 @@ class PreferenceGroup extends Component {
     return (
       <div style={{ padding: 10 }}>
         <Typography variant="subtitle2">{string.capitalize(label)}</Typography>
-        <TagsInput value={tags} onChange={this.handleChange} />
+        <TagsInput
+          value={tags}
+          onChange={this.handleChange}
+          onChangeInput={this.handleChangeInput}
+          onlyUnique={true}
+          addOnBlur={true} />
       </div>
     );
   }
