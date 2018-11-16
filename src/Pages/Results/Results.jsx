@@ -10,30 +10,33 @@ var _ = require('lodash/collection');
 
 class Results extends Component {
 
-  expandable = (category) => {
-    const { classes, cards, categoryStates } = this.props;
-    var shouldExpand = (categoryStates[category] === 'img_liked');
-    return shouldExpand;
-  }
-
-  disableCategory = (category) => {
-    const { classes, cards, categoryStates } = this.props;
-    var shouldDisable = (categoryStates[category] === 'img_disliked')
-    return shouldDisable;
-  }
-
   render() {
     const groups = _.groupBy(restaurants, restaurant => restaurant.category)
+    const { classes, cards, categoryStates } = this.props;
 
     return (
       <div>
-        <Header resetState={ this.props.resetState } />
-        {Object.keys(groups).map(category =>
-          <CardPanel
-            key={category}
-            category={category} cards={groups[category]}
-            shouldExpand={this.expandable(category)} shouldDisable={this.disableCategory(category)} />
-        )}
+        <Header resetState={ this.props.resetState }/>
+        {Object.keys(categoryStates).map(category =>{
+          if (categoryStates[category] === 'img_liked'){
+            return (
+              <CardPanel
+                key={category}
+                category={category} cards={groups[category]}
+                shouldExpand={true} />
+            )
+          }
+        })}
+        {Object.keys(categoryStates).map(category =>{
+          if (categoryStates[category] === 'img_neutral'){
+            return (
+              <CardPanel
+                key={category}
+                category={category} cards={groups[category]}
+                shouldExpand={false} />
+            )
+          }
+        })}
       </div>
     )
   }

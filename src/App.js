@@ -5,6 +5,7 @@ import Results from "./Pages/Results/Results";
 import Details from "./Pages/Details/Details";
 import Home from "./Pages/Home/Home";
 import Waiting from "./Pages/Waiting/Waiting";
+import { restaurants } from "./Pages/Results/store";
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 var _ = require('lodash');
 
@@ -32,6 +33,11 @@ class App extends Component {
       this.state.users = this.state.users.concat('GUEST')
       this.state.submitted = this.state.submitted.concat(false)
     }
+
+    const groups = _.groupBy(restaurants, restaurant => restaurant.category)
+    Object.keys(groups).map(category => {
+      this.state.categoryStates[category] = 'img_neutral'
+    })
   }
 
   handlePreferenceChange = (preference, newTags)  => {
@@ -120,6 +126,8 @@ class App extends Component {
   }
 
   render() {
+    const groups = _.groupBy(restaurants, restaurant => restaurant.category)
+
     return (
       <Router>
         <div>

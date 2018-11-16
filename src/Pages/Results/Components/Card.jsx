@@ -66,7 +66,7 @@ class Card extends Component {
 
           <Grid container item direction='column' alignItems='flex-end' xs={3}>
             <Grid item><Typography variant="subtitle2">{"$".repeat(cardInfo.cost)}</Typography></Grid>
-            <Grid item><ReactStars count={5} size={15} value={cardInfo.rating} color2={'#ffd700'} edit={false} /></Grid>
+            <Grid item><ReactStars count={5} size={12} value={cardInfo.rating} color2={'#ffd700'} edit={false} /></Grid>
           </Grid>
         </Grid>
       </Paper>

@@ -47,7 +47,7 @@ class Details extends Component {
                 </Grid>
                 <Grid container item direction='column' alignItems='flex-end' xs={4}>
                   <Grid item><Typography variant="subtitle1">{"$".repeat(info.cost)}</Typography></Grid>
-                  <Grid item><ReactStars count={5} size={24} value={info.rating} color2={'#ffd700'} edit={false} /></Grid>
+                  <Grid item><ReactStars count={5} size={20} value={info.rating} color2={'#ffd700'} edit={false} /></Grid>
                 </Grid>
               </Grid>
             </Grid>

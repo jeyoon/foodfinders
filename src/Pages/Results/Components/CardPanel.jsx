@@ -7,6 +7,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 import Card from "./Card"
 import { restaurants } from "../store";
@@ -39,20 +40,27 @@ class CardPanel extends Component {
   }
 
   render() {
-    const { classes, category, cards, shouldDisable } = this.props
+    const { classes, category, cards } = this.props
     const { shouldExpand } = this.state
     const preferred = this.props.shouldExpand
 
     return (
       <div className={classes.root}>
-        {(shouldDisable != true) && (
-          <ExpansionPanel
+        { <ExpansionPanel
             className={classes.panel}
             expanded={shouldExpand}
-            onChange={() => this.setState({ shouldExpand: !this.state.shouldExpand })}
-            style={{ backgroundColor: preferred ? '#B9E3AB' : '#F7F7F7' }}>
+            onChange={() => {
+              var newState = !this.state.shouldExpand
+              this.setState({ shouldExpand: newState })
+            }}
+            style={{ backgroundColor: preferred ? '#B9E3AB' : '#FFFFFF' }}>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
               <Typography className={classes.heading}>{category}</Typography>
+              {preferred && (
+                <SvgIcon>
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </SvgIcon>
+              )}
             </ExpansionPanelSummary>
             <ExpansionPanelDetails style={{ paddingLeft: 12, paddingRight: 12 }}>
               <Grid container direction="column" spacing={8}>
@@ -64,7 +72,7 @@ class CardPanel extends Component {
               </Grid>
             </ExpansionPanelDetails>
           </ExpansionPanel>
-        )}
+        }
       </div>
     );
   }

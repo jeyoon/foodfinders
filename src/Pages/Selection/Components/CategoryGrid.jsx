@@ -22,13 +22,19 @@ class CategoryGrid extends Component {
     if (category.title in categoryStates){
       return (
         <Grid item key={category.title} xs={6}>
-          <CategoryTile category={category} categoryState={categoryStates[category.title]} selectionChangeHandler={this.selectionHandler}/>
+          <CategoryTile
+            category={category}
+            categoryState={categoryStates[category.title]}
+            selectionChangeHandler={this.selectionHandler}/>
         </Grid>
       )
     } else {
       return (
         <Grid item key={category.title} xs={6}>
-          <CategoryTile category={category} categoryState={'img_neutral'} selectionChangeHandler={this.selectionHandler}/>
+          <CategoryTile
+            category={category}
+            categoryState={'img_neutral'}
+            selectionChangeHandler={this.selectionHandler}/>
         </Grid>
       )
     }

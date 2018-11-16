@@ -16,7 +16,10 @@ class Selection extends Component {
     return (
       <div>
         <Header />
-        <CategoryGrid categories={categories} categoryStates={this.props.categoryStates} selectionHandler={this.onSelectionChange}/>
+        <CategoryGrid
+          categories={categories}
+          categoryStates={this.props.categoryStates}
+          selectionHandler={this.onSelectionChange}/>
       </div>
     );
   }
