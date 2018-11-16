@@ -5,23 +5,33 @@ import Results from "./Pages/Results/Results";
 import Details from "./Pages/Details/Details";
 import Home from "./Pages/Home/Home";
 import Waiting from "./Pages/Waiting/Waiting";
-
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 var _ = require('lodash');
 
 class App extends Component {
-  state = {
-    likes: [],
-    dislikes: [],
-    allergies: [],
-    categoryStates: {},
-    users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
-    submitted: [false, false, false, false, false],
-    currentUser: "GUEST",
-    groupOwner: "GUEST",
-    inviteCode: "000000",
-    fakeJoin: false, // TBD
-    fakeSubmit: true
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      likes: [],
+      dislikes: [],
+      allergies: [],
+      categoryStates: {},
+      users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
+      submitted: [false, false, false, false, false],
+      currentUser: undefined,
+      groupOwner: undefined,
+      inviteCode: "000000",
+      fakeJoin: false, // TBD
+      fakeSubmit: true
+    }
+
+    if (window.location.pathname != "/" && this.state.currentUser === undefined) {
+      this.state.currentUser = 'GUEST'
+      this.state.groupOwner = 'GUEST'
+      this.state.users = this.state.users.concat('GUEST')
+      this.state.submitted = this.state.submitted.concat(false)
+    }
   }
 
   handlePreferenceChange = (preference, newTags)  => {
