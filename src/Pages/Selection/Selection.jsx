@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import CategoryGrid from "./Components/CategoryGrid";
 import Header from "./Components/Header";
-
-
 import { categories } from "./store";
+var _ = require('lodash');
 
 class Selection extends Component {
 
@@ -13,11 +12,14 @@ class Selection extends Component {
   };
 
   render() {
+    const { categoryStates } = this.props
+    let filteredCategories = _.filter(categories, category => _.has(categoryStates, category.title))
+
     return (
       <div>
         <Header />
         <CategoryGrid
-          categories={categories}
+          categories={filteredCategories}
           categoryStates={this.props.categoryStates}
           selectionHandler={this.onSelectionChange}/>
       </div>

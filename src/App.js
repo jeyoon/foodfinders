@@ -15,8 +15,9 @@ class App extends Component {
 
     this.state = {
       likes: [],
-      dislikes: [],
+      dislikes: ['beef'],
       allergies: [],
+      restaurantData: [],
       categoryStates: {},
       users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
       submitted: [false, false, false, false, false],
@@ -34,22 +35,20 @@ class App extends Component {
       this.state.submitted = this.state.submitted.concat(false)
     }
 
-    const groups = _.groupBy(restaurants, restaurant => restaurant.category)
-    Object.keys(groups).map(category => {
-      this.state.categoryStates[category] = 'img_neutral'
-    })
+    const categoryGroups = _.groupBy(restaurants, restaurant => restaurant.category)
+    Object.keys(categoryGroups).map(category => { this.state.categoryStates[category] = 'img_neutral' })
   }
 
   handlePreferenceChange = (preference, newTags)  => {
-    console.log(`Updating ${preference} to ${newTags}`)
-    this.setState({ [preference]: newTags })
+    console.log(`Updating preference ${preference} to ${newTags}`)
+    this.setState({ [preference]: newTags }, () => { this.updateRestaurants() })
   }
 
   handleSelectionChange = (selection, newStates)  => {
     var copiedCategoryStates = Object.assign({}, this.state.categoryStates)
     copiedCategoryStates[selection] = newStates;
 
-    console.log(`Updating ${selection} to ${newStates}`)
+    console.log(`Updating category ${selection} to ${newStates}`)
     this.setState({categoryStates: copiedCategoryStates})
   }
 
@@ -61,6 +60,33 @@ class App extends Component {
 
     newSubmitState[users.indexOf(currentUser)] = true
     this.setState({ submitted: newSubmitState })
+  }
+
+  updateRestaurants = () => {
+    const categoryGroups = _.groupBy(restaurants, restaurant => restaurant.category)
+    let categoryStates = {}
+    Object.keys(categoryGroups).map(category => { categoryStates[category] = 'img_neutral' })
+
+    const { dislikes, allergies } = this.state
+    console.log('B', dislikes, allergies)
+
+    // Applying dislikes and allergies as filters
+    let filteredRestaurants = _.filter(
+      restaurants,
+      restaurant => _.difference(dislikes, restaurant.tags).length === dislikes.length)
+    filteredRestaurants = _.filter(
+      filteredRestaurants,
+      restaurant => _.difference(allergies, restaurant.tags).length === allergies.length)
+    const categories = _.groupBy(filteredRestaurants, restaurant => restaurant.category)
+
+    let filteredCategoryStates = _.groupBy(filteredRestaurants, restaurant => restaurant.category)
+    filteredCategoryStates = _.pickBy(categoryStates, (categoryState, category) => _.has(categories, category))
+    console.log('A', filteredCategoryStates)
+
+    this.setState({
+      restaurantData: filteredRestaurants,
+      categoryStates: filteredCategoryStates
+    })
   }
 
   // Appends user and randomly generated code to state
@@ -126,8 +152,6 @@ class App extends Component {
   }
 
   render() {
-    const groups = _.groupBy(restaurants, restaurant => restaurant.category)
-
     return (
       <Router>
         <div>
@@ -154,6 +178,7 @@ class App extends Component {
             path="/results" render={props =>
               <Results
                 categoryStates={this.state.categoryStates}
+                restaurants={this.state.restaurantData}
                 resetState={this.resetState}
               />}
             />

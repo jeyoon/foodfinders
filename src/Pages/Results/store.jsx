@@ -13,7 +13,8 @@ export const restaurants = [
       'Classic': 'No frills.',
       'Cheesy': 'For cheese lovers?',
       'Animal-Style': 'I can respect minimalism.',
-    }
+    },
+    'tags': [ 'beef' ]
   },
   {
     'title': 'Make It Tso',
@@ -27,7 +28,8 @@ export const restaurants = [
       'Plain': 'Really? Plain noodles?',
       'Raw': 'Are you really sure you want this?',
       'Pho': 'Wait, I thought this place serves orange chicken.',
-    }
+    },
+    'tags': [ 'noodles' ]
   },
   {
     'title': 'Miso Happy',
@@ -41,7 +43,8 @@ export const restaurants = [
       'Tamago': "Can't go wrong with this one.",
       'Salmon roll': 'A roll containing salmon.',
       'Miso soup': 'An essential.',
-    }
+    },
+    'tags': [ 'fish' ]
   },
   {
     'title': 'Oui Love Baguettes',
@@ -55,6 +58,7 @@ export const restaurants = [
       'Steak': 'A slab of well-done meat.',
       'Brisket': 'A thinner slab of raw meat.',
       'Load of bread': "If you aren't in the mood for meat.",
-    }
+    },
+    'tags': [ 'beef' ]
   },
 ]
