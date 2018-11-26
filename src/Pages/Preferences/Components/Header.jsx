@@ -14,7 +14,7 @@ const styles = theme => ({
 });
 
 function Header(props) {
-  const { currentUser, inviteCode, classes } = props;
+  const { inviteCode, classes } = props;
 
   return (
     <Paper elevation={1} className={classes.root}>

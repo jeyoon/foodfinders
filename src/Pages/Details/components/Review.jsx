@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
-import { ListItem, ListItemText, Divider, Typography } from '@material-ui/core';
+import { ListItem, ListItemText, Divider } from '@material-ui/core';
 
 function Review(props) {
-  const { classes } = props;
   const { name, desc } = props;
 
   return (

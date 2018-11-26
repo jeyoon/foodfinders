@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Input, Modal, Typography } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
 import { Link, withRouter } from 'react-router-dom';
+import { Button, Input, Modal, Typography } from '@material-ui/core';
 
 function getModalStyle() {
     const top = 50;
@@ -68,7 +65,7 @@ class SimpleModal extends React.Component {
       let message = ''
       if (!username.trim() || !inviteCode.trim()) {
         message = 'Inputs cannot be an empty string.'
-      } else if (inviteCode.trim().length != 6) {
+      } else if (inviteCode.trim().length !== 6) {
         message = 'Invite code must be at least 6 characters.'
       }
 

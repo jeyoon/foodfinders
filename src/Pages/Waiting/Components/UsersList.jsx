@@ -27,10 +27,6 @@ const styles = theme => ({
 });
 
 class UsersList extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const { classes, users, status } = this.props
 

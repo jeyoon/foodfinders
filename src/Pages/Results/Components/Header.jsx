@@ -1,10 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { AppBar, Button, Grid, Toolbar, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { Button, Grid, Input } from '@material-ui/core';
 import ConfirmModal from './homeConfirm.jsx';
-
 
 const styles = theme => ({
   root: {

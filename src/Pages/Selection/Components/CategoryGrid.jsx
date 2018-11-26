@@ -40,7 +40,7 @@ class CategoryGrid extends Component {
   }
 
   render() {
-    const { classes, categories, categoryStates } = this.props;
+    const { classes, categories } = this.props;
 
     return (
       <Grid container spacing={8} className={classes.grid} >

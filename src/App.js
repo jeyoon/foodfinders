@@ -6,7 +6,7 @@ import Details from "./Pages/Details/Details";
 import Home from "./Pages/Home/Home";
 import Waiting from "./Pages/Waiting/Waiting";
 import { restaurants } from "./Pages/Results/store";
-import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 var _ = require('lodash');
 
 class App extends Component {
@@ -36,7 +36,7 @@ class App extends Component {
     }
 
     const categoryGroups = _.groupBy(restaurants, restaurant => restaurant.category)
-    Object.keys(categoryGroups).map(category => { this.state.categoryStates[category] = 'img_neutral' })
+    Object.keys(categoryGroups).forEach(category => { this.state.categoryStates[category] = 'img_neutral' })
   }
 
   handlePreferenceChange = (preference, newTags)  => {
@@ -65,7 +65,7 @@ class App extends Component {
   updateRestaurants = () => {
     const categoryGroups = _.groupBy(restaurants, restaurant => restaurant.category)
     let categoryStates = {}
-    Object.keys(categoryGroups).map(category => { categoryStates[category] = 'img_neutral' })
+    Object.keys(categoryGroups).forEach(category => { categoryStates[category] = 'img_neutral' })
 
     const { dislikes, allergies } = this.state
 
@@ -157,7 +157,6 @@ class App extends Component {
             path="/preferences"
             render={props =>
               <Preferences
-                inviteCode={this.inviteCode}
                 onPreferenceChange={this.handlePreferenceChange}
                 onPreferenceSubmit={this.handlePreferenceSubmit}
                 preferences={_.pick(this.state, ['likes', 'dislikes', 'allergies'])}

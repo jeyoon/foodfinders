@@ -1,8 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { Button, Grid, Input } from '@material-ui/core';
+import { AppBar, Grid, Toolbar, Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {

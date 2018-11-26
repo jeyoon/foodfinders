@@ -19,7 +19,7 @@ class Waiting extends Component {
 
   constructor(props) {
     super(props)
-    const { currentUser, users, fakeJoin, fakeSubmit, disableAnimation, submitted } = this.props
+    const { currentUser, users, fakeSubmit, disableAnimation, submitted } = this.props
     this.state = {
       submitted: submitted,
       open: false
