@@ -20,7 +20,7 @@ class CategoryGrid extends Component {
 
     if (category.title in categoryStates){
       return (
-        <Grid item key={category.title} xs={6}>
+        <Grid container item key={category.title} xs={12}>
           <CategoryTile
             category={category}
             categoryState={categoryStates[category.title]}
@@ -29,7 +29,7 @@ class CategoryGrid extends Component {
       )
     } else {
       return (
-        <Grid item key={category.title} xs={6}>
+        <Grid container item key={category.title} xs={12}>
           <CategoryTile
             category={category}
             categoryState={'img_neutral'}
@@ -43,7 +43,7 @@ class CategoryGrid extends Component {
     const { classes, categories } = this.props;
 
     return (
-      <Grid container spacing={8} className={classes.grid} >
+      <Grid container direction='column' spacing={8} className={classes.grid} >
         { categories.map(category => this.assignCategory(category)) }
       </Grid>
     );

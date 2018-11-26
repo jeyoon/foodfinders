@@ -1,38 +1,33 @@
 import React, { Component } from "react";
-import { Grid } from "@material-ui/core";
-
-import Card from "./Components/Card"
 import Header from "./Components/Header"
 import CardPanel from "./Components/CardPanel"
-import { restaurants } from "./store";
 
-var _ = require('lodash/collection');
+var _ = require('lodash');
 
 class Results extends Component {
 
-  expandable = (category) => {
-    const { classes, cards, categoryStates } = this.props;
-    var shouldExpand = (categoryStates[category] === 'img_liked');
-    return shouldExpand;
-  }
-
-  disableCategory = (category) => {
-    const { classes, cards, categoryStates } = this.props;
-    var shouldDisable = (categoryStates[category] === 'img_disliked')
-    return shouldDisable;
-  }
-
   render() {
-    const groups = _.groupBy(restaurants, restaurant => restaurant.category)
+    const { categoryStates, restaurants, resetState } = this.props;
+    const categories = _.groupBy(restaurants, restaurant => restaurant.category)
 
     return (
       <div>
-        <Header />
-        {Object.keys(groups).map(category =>
-          <CardPanel
-            key={category}
-            category={category} cards={groups[category]}
-            shouldExpand={this.expandable(category)} shouldDisable={this.disableCategory(category)} />
+        <Header resetState={resetState}/>
+        {Object.keys(categoryStates).map(category =>
+          categoryStates[category] === 'img_liked' && (
+              <CardPanel
+                key={category}
+                category={category} cards={categories[category]}
+                shouldExpand={true} />
+          )
+        )}
+        {Object.keys(categoryStates).map(category =>
+          categoryStates[category] === 'img_neutral' && (
+              <CardPanel
+                key={category}
+                category={category} cards={categories[category]}
+                shouldExpand={false} />
+          )
         )}
       </div>
     )

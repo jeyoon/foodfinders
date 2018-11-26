@@ -14,11 +14,12 @@ const styles = theme => ({
 });
 
 function Header(props) {
-  const { currentUser, inviteCode, classes } = props;
+  const { inviteCode, classes } = props;
 
   return (
     <Paper elevation={1} className={classes.root}>
-      <Typography variant="h5" gutterBottom>Please enter your preferences</Typography>
+      <Typography variant="h5">Please enter your preferences</Typography>
+      <Typography variant="subtitle1" gutterBottom>Which foods do you like or dislike?</Typography>
       <Typography>Invite Code: {inviteCode}</Typography>
     </Paper>
   );

@@ -17,11 +17,9 @@ class CategoryTile extends Component {
 
   constructor(props){
     super(props);
-    const { category, categoryState, selectionHandler } = this.props;
+    const { categoryState } = this.props;
 
-    // this.state = this.state.selections;
     this.state = { categoryState: categoryState }
-
     this.toggleImage = this.toggleImage.bind(this);
    }
 
@@ -30,7 +28,6 @@ class CategoryTile extends Component {
    };
 
    toggleImage = () => {
-    const { category } = this.props;
     const { categoryState } = this.state;
     var newState;
 
@@ -53,7 +50,7 @@ class CategoryTile extends Component {
     const { categoryState } = this.state
 
     return (
-      <Paper className={classes.tile} onClick={this.toggleImage} >
+      <Paper className={classes.tile} onClick={this.toggleImage}  >
         <img src={category[categoryState]} alt={category.title} />
         <Typography>{category.title}</Typography>
       </Paper>

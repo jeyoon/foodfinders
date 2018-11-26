@@ -1,10 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { AppBar, Button, Grid, Toolbar, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { Button, Grid, Input } from '@material-ui/core';
 import ConfirmModal from './homeConfirm.jsx';
-
 
 const styles = theme => ({
   root: {
@@ -24,7 +22,7 @@ const styles = theme => ({
 });
 
 function Header(props) {
-  const { classes } = props;
+  const { classes, resetState } = props;
 
   return (
     <AppBar position='static' className={classes.root}>
@@ -34,8 +32,8 @@ function Header(props) {
             <Typography variant='h6' className={classes.grow}>
               Results
             </Typography>
-              <Button component={Link} to="/selection">Back</Button>
-              <ConfirmModal/>
+            <Button component={Link} to="/selection">Back</Button>
+            <ConfirmModal resetState={resetState} />
           </Toolbar>
         </Grid>
       </Grid>

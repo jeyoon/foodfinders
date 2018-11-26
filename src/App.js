@@ -1,39 +1,55 @@
 import React, { Component } from "react";
 import Preferences from "./Pages/Preferences/Preferences";
 import Selection from "./Pages/Selection/Selection";
+import SelectionNew from "./Pages/SelectionNew/Selection";
 import Results from "./Pages/Results/Results";
 import Details from "./Pages/Details/Details";
 import Home from "./Pages/Home/Home";
 import Waiting from "./Pages/Waiting/Waiting";
-
+import { restaurants } from "./Pages/Results/store";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 var _ = require('lodash');
 
 class App extends Component {
-  state = {
-    likes: [],
-    dislikes: [],
-    allergies: [],
-    categoryStates: {},
-    users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
-    submitted: [false, false, false, false, false],
-    currentUser: "GUEST",
-    groupOwner: "GUEST",
-    inviteCode: "000000",
-    fakeJoin: false, // TBD
-    fakeSubmit: true
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      likes: [],
+      dislikes: [],
+      allergies: [],
+      restaurantData: restaurants,
+      categoryStates: {},
+      users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
+      submitted: [false, false, false, false, false],
+      currentUser: undefined,
+      groupOwner: undefined,
+      inviteCode: "000000",
+      fakeJoin: false, // TBD
+      fakeSubmit: true
+    }
+
+    if (window.location.pathname !== "/" && this.state.currentUser === undefined) {
+      this.state.currentUser = 'GUEST'
+      this.state.groupOwner = 'GUEST'
+      this.state.users = this.state.users.concat('GUEST')
+      this.state.submitted = this.state.submitted.concat(false)
+    }
+
+    const categoryGroups = _.groupBy(restaurants, restaurant => restaurant.category)
+    Object.keys(categoryGroups).forEach(category => { this.state.categoryStates[category] = 'img_neutral' })
   }
 
   handlePreferenceChange = (preference, newTags)  => {
-    console.log(`Updating ${preference} to ${newTags}`)
-    this.setState({ [preference]: newTags })
+    console.log(`Updating preference ${preference} to ${newTags}`)
+    this.setState({ [preference]: newTags }, () => { this.updateRestaurants() })
   }
 
   handleSelectionChange = (selection, newStates)  => {
     var copiedCategoryStates = Object.assign({}, this.state.categoryStates)
     copiedCategoryStates[selection] = newStates;
 
-    console.log(`Updating ${selection} to ${newStates}`)
+    console.log(`Updating category ${selection} to ${newStates}`)
     this.setState({categoryStates: copiedCategoryStates})
   }
 
@@ -45,6 +61,31 @@ class App extends Component {
 
     newSubmitState[users.indexOf(currentUser)] = true
     this.setState({ submitted: newSubmitState })
+  }
+
+  updateRestaurants = () => {
+    const categoryGroups = _.groupBy(restaurants, restaurant => restaurant.category)
+    let categoryStates = {}
+    Object.keys(categoryGroups).forEach(category => { categoryStates[category] = 'img_neutral' })
+
+    const { dislikes, allergies } = this.state
+
+    // Applying dislikes and allergies as filters
+    let filteredRestaurants = _.filter(
+      restaurants,
+      restaurant => _.difference(dislikes, restaurant.tags).length === dislikes.length)
+    filteredRestaurants = _.filter(
+      filteredRestaurants,
+      restaurant => _.difference(allergies, restaurant.tags).length === allergies.length)
+    const categories = _.groupBy(filteredRestaurants, restaurant => restaurant.category)
+
+    let filteredCategoryStates = _.groupBy(filteredRestaurants, restaurant => restaurant.category)
+    filteredCategoryStates = _.pickBy(categoryStates, (categoryState, category) => _.has(categories, category))
+
+    this.setState({
+      restaurantData: filteredRestaurants,
+      categoryStates: filteredCategoryStates
+    })
   }
 
   // Appends user and randomly generated code to state
@@ -92,6 +133,23 @@ class App extends Component {
     }
   }
 
+  resetState = () => {
+    console.log("Resetting app state")
+    this.setState({
+      likes: [],
+      dislikes: [],
+      allergies: [],
+      categoryStates: {},
+      users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
+      submitted: [false, false, false, false, false],
+      currentUser: undefined,
+      groupOwner: undefined,
+      inviteCode: "000000",
+      fakeJoin: false, // TBD
+      fakeSubmit: true
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -100,7 +158,6 @@ class App extends Component {
             path="/preferences"
             render={props =>
               <Preferences
-                inviteCode={this.inviteCode}
                 onPreferenceChange={this.handlePreferenceChange}
                 onPreferenceSubmit={this.handlePreferenceSubmit}
                 preferences={_.pick(this.state, ['likes', 'dislikes', 'allergies'])}
@@ -116,9 +173,19 @@ class App extends Component {
               />}
             />
           <Route
+            path="/selection_new"
+            render={props =>
+              <SelectionNew
+                categoryStates={this.state.categoryStates}
+                onSelectionChange={this.handleSelectionChange}
+              />}
+            />
+          <Route
             path="/results" render={props =>
               <Results
                 categoryStates={this.state.categoryStates}
+                restaurants={this.state.restaurantData}
+                resetState={this.resetState}
               />}
             />
           <Route path="/details" component={Details}/>
@@ -134,6 +201,7 @@ class App extends Component {
                 fakeJoin={this.state.fakeJoin}
                 fakeSubmit={this.state.fakeSubmit}
                 disableAnimation={this.disableAnimation}
+                resetState={this.resetState}
               />}
           />
           <Route exact path="/"

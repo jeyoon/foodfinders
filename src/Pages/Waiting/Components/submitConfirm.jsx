@@ -1,12 +1,8 @@
-/* from https://codesandbox.io/s/z41p577zp */
 import React from 'react';
 import PropTypes from 'prop-types'
-import { Input, Modal } from '@material-ui/core';
+import { Button, Modal, Typography } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom'
-import { Typography } from "@material-ui/core";
+import { Link, withRouter } from 'react-router-dom';
 
 function getModalStyle() {
     const top = 50;
@@ -63,7 +59,7 @@ class SimpleModal extends React.Component {
     handleOpen = () => { this.setState({ open: true }) };
     handleClose = () => { this.setState({ open: false }) };
 
-    handleCreate = () => {
+    handleReset = () => {
         this.props.handleCreate(this.state.value)
         this.props.history.push('/waiting')
     }
@@ -92,7 +88,7 @@ class SimpleModal extends React.Component {
                             className={classes.button}
                             variant="contained"
                             component={Link}
-                            onClick={this.handleCreate}
+                            onClick={this.handleReset}
                             to="/">Yes</Button>
                     </div>
 

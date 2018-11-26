@@ -21,7 +21,7 @@ const styles = theme => ({
 class Selection extends Component {
 
   render() {
-      const {classes, addUser, handleCreate, handleJoin} = this.props;
+      const {classes, handleCreate, handleJoin} = this.props;
 
       return (
         <Grid container direction='column' justify='center' className={classes.root}>
@@ -39,7 +39,7 @@ class Selection extends Component {
                   filtering restaurants based on culture and mealtime.</Typography><hr/>
               </Grid>
               <Grid align="center" item xs={12}>
-                <img src={"forkAndspoon.jpg"} /><hr/>
+                <img src={"forkAndspoon.jpg"} alt="logo" /><hr/>
               </Grid>
               <Grid container item xs={12}>
                 <Grid align="center" item xs={12}>
