@@ -18,7 +18,7 @@ class App extends Component {
       likes: [],
       dislikes: [],
       allergies: [],
-      restaurantData: [],
+      restaurantData: restaurants,
       categoryStates: {},
       users: ["John", "Sherry", "Gabe", "Phillip", "Steve"],
       submitted: [false, false, false, false, false],

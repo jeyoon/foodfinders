@@ -27,15 +27,11 @@ const styles = theme => ({
 
 class CardPanel extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      shouldExpand: this.props.shouldExpand
-    }
+  state = {
+    shouldExpand: this.props.shouldExpand
   }
 
   render() {
-    console.log('render cp')
     const { classes, category, cards } = this.props
     const { shouldExpand } = this.state
     const preferred = this.props.shouldExpand
