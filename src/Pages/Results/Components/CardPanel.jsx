@@ -35,6 +35,7 @@ class CardPanel extends Component {
   }
 
   render() {
+    console.log('render cp')
     const { classes, category, cards } = this.props
     const { shouldExpand } = this.state
     const preferred = this.props.shouldExpand

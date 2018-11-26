@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Preferences from "./Pages/Preferences/Preferences";
 import Selection from "./Pages/Selection/Selection";
+import SelectionNew from "./Pages/SelectionNew/Selection";
 import Results from "./Pages/Results/Results";
 import Details from "./Pages/Details/Details";
 import Home from "./Pages/Home/Home";
@@ -167,6 +168,14 @@ class App extends Component {
             path="/selection"
             render={props =>
               <Selection
+                categoryStates={this.state.categoryStates}
+                onSelectionChange={this.handleSelectionChange}
+              />}
+            />
+          <Route
+            path="/selection_new"
+            render={props =>
+              <SelectionNew
                 categoryStates={this.state.categoryStates}
                 onSelectionChange={this.handleSelectionChange}
               />}

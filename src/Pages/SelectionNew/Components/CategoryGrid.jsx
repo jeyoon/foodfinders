@@ -1,0 +1,53 @@
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
+import CategoryTile from './CategoryTile';
+
+const styles = theme => ({
+  grid: {
+    padding: 10
+  }
+});
+
+class CategoryGrid extends Component {
+
+  selectionHandler = (categoryTitle, newState) => {
+    this.props.selectionHandler(categoryTitle, newState)
+  };
+
+  assignCategory = (category) => {
+    const { categoryStates } = this.props
+
+    if (category.title in categoryStates){
+      return (
+        <Grid container item key={category.title} xs={12}>
+          <CategoryTile
+            category={category}
+            categoryState={categoryStates[category.title]}
+            selectionChangeHandler={this.selectionHandler}/>
+        </Grid>
+      )
+    } else {
+      return (
+        <Grid container item key={category.title} xs={12}>
+          <CategoryTile
+            category={category}
+            categoryState={'img_neutral'}
+            selectionChangeHandler={this.selectionHandler}/>
+        </Grid>
+      )
+    }
+  }
+
+  render() {
+    const { classes, categories } = this.props;
+
+    return (
+      <Grid container direction='column' spacing={8} className={classes.grid} >
+        { categories.map(category => this.assignCategory(category)) }
+      </Grid>
+    );
+  }
+}
+
+export default withStyles(styles)(CategoryGrid);
