@@ -106,15 +106,15 @@ class SimpleModal extends React.Component {
                       )}
                       <Button
                         className={classes.modalButton}
+                        aria-label="Delete"
+                        variant="contained"
+                        onClick={this.handleClose}>Back</Button>
+                      <Button
+                        className={classes.modalButton}
                         variant="contained"
                         component={Link}
                         onClick={this.handleCreate}
                         to="/waiting">Create</Button>
-                      <Button
-                        className={classes.modalButton}
-                        aria-label="Delete"
-                        variant="contained"
-                        onClick={this.handleClose}>Back</Button>
                   </div>
 
               </Modal>

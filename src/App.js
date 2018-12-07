@@ -42,7 +42,9 @@ class App extends Component {
 
   handlePreferenceChange = (preference, newTags)  => {
     console.log(`Updating preference ${preference} to ${newTags}`)
-    this.setState({ [preference]: newTags }, () => { this.updateRestaurants() })
+    console.log(newTags.map((tag) => tag.toLowerCase()))
+    this.setState({ [preference]: newTags.map((tag) => tag.toLowerCase()) },
+                    () => { this.updateRestaurants() })
   }
 
   handleSelectionChange = (selection, newStates)  => {
@@ -165,7 +167,7 @@ class App extends Component {
               />}
           />
           <Route
-            path="/selection"
+            path="/selection_old"
             render={props =>
               <Selection
                 categoryStates={this.state.categoryStates}
@@ -173,7 +175,7 @@ class App extends Component {
               />}
             />
           <Route
-            path="/selection_new"
+            path="/selection"
             render={props =>
               <SelectionNew
                 categoryStates={this.state.categoryStates}
